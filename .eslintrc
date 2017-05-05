@@ -1,3 +1,6 @@
 {
-    "extends": "eslint-config-davinci"
+    "extends": "eslint-config-davinci",
+    "rules": {
+        "import/no-unresolved": "off"
+    }
 }
