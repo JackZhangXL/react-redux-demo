@@ -50,7 +50,6 @@ const devServer = async() => {
     const stdIn = process.stdin;
     stdIn.setEncoding('utf8');
     stdIn.on('data', openBrowser);
-
 };
 
 devServer().catch((ex) => {

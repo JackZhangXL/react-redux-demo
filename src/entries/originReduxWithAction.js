@@ -1,4 +1,7 @@
 import { createStore } from 'Redux';
+import * as constant from '../configs/action';
+import * as action from '../actions/number';
+import './originRedux.pcss';
 
 function counter(state, action) {
     if (typeof state === 'undefined') {
@@ -6,10 +9,12 @@ function counter(state, action) {
     }
 
     switch (action.type) {
-        case 'INCREMENT':
-            return state + 2;
-        case 'DECREMENT':
-            return state - 2;
+        case constant.INCREMENT:
+            return state + 1;
+        case constant.DECREMENT:
+            return state - 1;
+        case constant.CLEAR_NUM:
+            return 0;
         default:
             return state;
     }
@@ -27,24 +32,24 @@ store.subscribe(render);
 
 document.getElementById('increment')
     .addEventListener('click', () => {
-        store.dispatch({ type: 'INCREMENT' });
+        store.dispatch(action.incrementNum());
     });
 
 document.getElementById('decrement')
     .addEventListener('click', () => {
-        store.dispatch({ type: 'DECREMENT' });
+        store.dispatch(action.decrementNum());
     });
 
-document.getElementById('incrementIfOdd')
+document.getElementById('clear')
     .addEventListener('click', () => {
-        if (store.getState() % 2 !== 0) {
-            store.dispatch({ type: 'INCREMENT' });
+        if (store.getState() !== 0) {
+            store.dispatch(action.clearNum());
         }
     });
 
 document.getElementById('incrementAsync')
     .addEventListener('click', () => {
         setTimeout(() => {
-            store.dispatch({ type: 'INCREMENT' });
+            store.dispatch({ type: constant.INCREMENT });
         }, 1000);
     });

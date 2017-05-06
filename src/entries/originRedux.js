@@ -1,6 +1,11 @@
+import React, { Component } from 'react';
+import { render } from 'react-dom';
 import { createStore } from 'Redux';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
+import './originRedux.pcss';
 
-function counter(state, action) {
+const store = createStore((state, action) => {
     if (typeof state === 'undefined') {
         return 0;
     }
@@ -10,41 +15,49 @@ function counter(state, action) {
             return state + 1;
         case 'DECREMENT':
             return state - 1;
+        case 'CLEAR_NUM':
+            return 0;
         default:
             return state;
     }
-}
+});
 
-const store = createStore(counter);
-const valueEl = document.getElementById('value');
+const update = () => {
+    const valueEl = document.getElementsByClassName('numValue');
+    valueEl[0].innerHTML = store.getState().toString();
+};
 
-function render() {
-    valueEl.innerHTML = store.getState().toString();
-}
+store.subscribe(update);
 
-render();
-store.subscribe(render);
+export default class Number extends Component {
 
-document.getElementById('increment')
-    .addEventListener('click', () => {
+    addNum = () => {
         store.dispatch({ type: 'INCREMENT' });
-    });
+    };
 
-document.getElementById('decrement')
-    .addEventListener('click', () => {
+    minusNum = () => {
         store.dispatch({ type: 'DECREMENT' });
-    });
+    };
 
-document.getElementById('incrementIfOdd')
-    .addEventListener('click', () => {
-        if (store.getState() % 2 !== 0) {
-            store.dispatch({ type: 'INCREMENT' });
-        }
-    });
+    clearNum = () => {
+        store.dispatch({ type: 'CLEAR_NUM' });
+    };
 
-document.getElementById('incrementAsync')
-    .addEventListener('click', () => {
-        setTimeout(() => {
-            store.dispatch({ type: 'INCREMENT' });
-        }, 1000);
-    });
+    render() {
+        return (
+            <div className="numWrap">
+                Current Number: <span className="numValue">0</span>
+                <div>
+                    <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
+                    <Button size="large" className="numBtn" onClick={this.minusNum}>-</Button>
+                    <Button size="large" className="numBtn" onClick={this.clearNum}>clear</Button>
+                </div>
+            </div>
+        );
+    }
+}
+
+render(
+    <Number />,
+    document.getElementById('app')
+);

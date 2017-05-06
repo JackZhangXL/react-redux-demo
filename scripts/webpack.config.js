@@ -3,16 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const PostcssImport = require('postcss-import');
-// const precss = require('precss');
-// const cssnext = require('postcss-cssnext');
-
-// const classNameToFileName = require('./lib/string').classNameToFileName;
+const PostcssImport = require('postcss-import');
+const precss = require('precss');
+const cssnext = require('postcss-cssnext');
 
 const ENV_DEVELOPMENT = 'development';
 const ENV_PRODUCTION = 'production';
 const HOST = process.env.HOST || `0.0.0.0`;
-const PORT = process.env.PORT || 8008;
+const PORT = process.env.PORT || 9999;
 
 const SRC = path.join(process.cwd(), 'src');
 const BUILD = path.join(process.cwd(), 'build');
@@ -37,13 +35,6 @@ const config = {
         publicPath: './'
     },
     devtool: 'eval',
-    // postcss: function() {
-    //     return [
-    //         PostcssImport(),
-    //         precss,
-    //         cssnext
-    //     ]
-    // },
     module: {
         loaders: [
             {
@@ -55,11 +46,29 @@ const config = {
             //     test: /\.(png|jpg|gif)$/,
             //     loader: 'url-loader?limit=2048000'
             // },
-            // {
-            //     test: /\.[p]?css$/,
-            //     // loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
-            //     loader: 'style!css'
-            // },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.pcss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function() {
+                                return [
+                                    PostcssImport(),
+                                    precss,
+                                    cssnext,
+                                ];
+                            },
+                        },
+                    },
+                ],
+            },
             {
                 enforce: 'pre',
                 test: /\.js$/,
@@ -71,13 +80,15 @@ const config = {
         ]
     },
     plugins: [
-        // new ExtractTextPlugin('css/[name]-[hash].css'),
-        // new webpack.optimize.CommonsChunkPlugin('common', 'js/common-[hash].js'),
+        // new ExtractTextPlugin(`${ENTRIES}/[name]-[hash].pcss`),
+        // new webpack.optimize.CommonsChunkPlugin('common', 'js/common.js'),
         // new webpack.NamedModulesPlugin(),
     ],
 };
 
-const entriesList = fs.readdirSync(ENTRIES).filter((item) => true);
+const entriesList = fs.readdirSync(ENTRIES).filter((item) => {
+    return item.split('.')[1] === 'js';
+});
 console.log('entriesList: ', entriesList);
 
 entriesList.forEach((item) => {
@@ -98,7 +109,7 @@ console.log('entry[item]: ', entry[item]);
             hash: false,
             inject: 'body',
             chunks: [
-                'common',
+                // 'common',
                 item,
             ]
         })
@@ -134,9 +145,9 @@ switch (NODE_ENV) {
             port: PORT
         };
 
-        // config.plugins.push(
-        //     new webpack.HotModuleReplacementPlugin()
-        // );
+        config.plugins.push(
+            new webpack.HotModuleReplacementPlugin()
+        );
         break;
     // case ENV_PRODUCTION:
     //     config.plugins.push(
