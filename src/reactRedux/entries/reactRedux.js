@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import reducer from '../reducers/index';
 import * as actions from '../actions/number';
 import './originRedux.pcss';
+import Sample from '../containers/sample/sample';
 
 const store = createStore(reducer);
 
@@ -47,19 +48,7 @@ export default class Number extends Component {
 
     render() {
         return (
-            <div className="wrap">
-                <h3>origin Redux combine reducer</h3>
-                Current Number: <span className="numValue">0</span>
-                <div>
-                    <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
-                    <Button size="large" className="numBtn" onClick={this.minusNum}>-</Button>
-                    <Button size="large" className="numBtn" onClick={this.clearNum}>clear</Button>
-                </div>
-                <div>
-                    <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
-                    <Alert className="alert" message="Hello Redux" type="success" />
-                </div>
-            </div>
+            <Sample />
         );
     }
 }

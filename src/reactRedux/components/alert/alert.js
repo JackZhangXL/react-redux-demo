@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Alert } from 'antd';
 import 'antd/dist/antd.css';
-import './originRedux.pcss';
+import './alert.pcss';
 
-export default class Alert extends Component {
+export default class AlertComponent extends Component {
 
     render() {
         const {
@@ -14,7 +14,7 @@ export default class Alert extends Component {
         return (
             <div>
             {
-                showAlert ? <Alert className="alert" message="Hello Redux" type="success" /> : null
+                showAlert ? <Alert message="Hello Redux" type="success" /> : null
             }
             </div>
         );

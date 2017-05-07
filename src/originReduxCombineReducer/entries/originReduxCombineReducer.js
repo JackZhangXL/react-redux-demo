@@ -57,7 +57,7 @@ export default class Number extends Component {
                 </div>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
-                    <Alert className="alert" message="Hello Redux" type="success" />
+                    <Alert message="Hello Redux" type="success" />
                 </div>
             </div>
         );
