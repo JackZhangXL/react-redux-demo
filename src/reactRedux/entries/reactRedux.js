@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
 import reducer from '../reducers/index';
-import actions from '../actions/index';
+import * as actions from '../actions/number';
 import './originRedux.pcss';
 
 const store = createStore(reducer);
@@ -26,22 +26,22 @@ store.subscribe(update);
 export default class Number extends Component {
 
     addNum = () => {
-        store.dispatch(actions.number.incrementNum());
+        store.dispatch(actions.incrementNum());
     };
 
     minusNum = () => {
-        store.dispatch(actions.number.decrementNum());
+        store.dispatch(actions.decrementNum());
     };
 
     clearNum = () => {
-        store.dispatch(actions.number.clearNum());
+        store.dispatch(actions.clearNum());
     };
 
     toggleAlert = () => {
         if (store.getState().toggleAlert.showAlert) {
-            store.dispatch(actions.alert.hideAlert());
+            store.dispatch(actions.hideAlert());
         } else {
-            store.dispatch(actions.alert.showAlert());
+            store.dispatch(actions.showAlert());
         }
     };
 
