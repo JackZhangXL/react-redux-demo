@@ -7,15 +7,10 @@ const initialState = {
 // 原先是number，现在state为object
 export default (state = initialState, action) => {
     switch (action.type) {
-        case constant.SHOW_ALERT:
+        case constant.TOGGLE_ALERT:
             return {
                 ...state,
-                showAlert: true,
-            };
-        case constant.HIDE_ALERT:
-            return {
-                ...state,
-                showAlert: false,
+                showAlert: !state.showAlert,
             };
         default:
             return state;

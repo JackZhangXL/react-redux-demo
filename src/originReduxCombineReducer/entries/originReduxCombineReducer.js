@@ -38,11 +38,7 @@ export default class Number extends Component {
     };
 
     toggleAlert = () => {
-        if (store.getState().toggleAlert.showAlert) {
-            store.dispatch(actions.alert.hideAlert());
-        } else {
-            store.dispatch(actions.alert.showAlert());
-        }
+        store.dispatch(actions.alert.toggleAlert());
     };
 
     render() {
@@ -57,7 +53,7 @@ export default class Number extends Component {
                 </div>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
-                    <Alert message="Hello Redux" type="success" />
+                    <Alert className="alert" message="Hello Redux" type="success" />
                 </div>
             </div>
         );

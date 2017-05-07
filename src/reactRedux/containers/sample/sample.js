@@ -1,64 +1,64 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Button } from 'antd';
-import 'antd/dist/antd.css';
-import './sample.pcss';
+import { connect } from 'react-redux';
+import action from '../../actions/index';
 import NumberComponent from '../../components/number/number';
 import AlertComponent from '../../components/alert/alert';
+import './sample.pcss';
 
+class Sample extends Component {
 
-export default class Sample extends Component {
-
-    addNum = () => {
-        // store.dispatch(actions.number.incrementNum());
+    handleClickAdd = () => {
+        this.props.incrementNum();
     };
 
-    minusNum = () => {
-        // store.dispatch(actions.number.decrementNum());
+    handleClickMinux = () => {
+        this.props.decrementNum();
     };
 
-    clearNum = () => {
-        // store.dispatch(actions.number.clearNum());
+    handleClickClear = () => {
+        this.props.clearNum();
     };
 
-    toggleAlert = () => {
-        // if (store.getState().toggleAlert.showAlert) {
-        //     store.dispatch(actions.alert.hideAlert());
-        // } else {
-        //     store.dispatch(actions.alert.showAlert());
-        // }
+    handleClickAlert = () => {
+        this.props.toggleAlert();
     };
 
     render() {
+        const {
+            number,
+            showAlert,
+        } = this.props;
+
         return (
             <div className="wrap">
                 <h3>recat redux</h3>
-                <NumberComponent value={10} />
+                <NumberComponent
+                    value={number}
+                    handleClickAdd={this.handleClickAdd}
+                    handleClickMinux={this.handleClickMinux}
+                    handleClickClear={this.handleClickClear}
+                />
                 <div>
-                    <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
-                    <Button size="large" className="numBtn" onClick={this.minusNum}>-</Button>
-                    <Button size="large" className="numBtn" onClick={this.clearNum}>clear</Button>
-                </div>
-                <div>
-                    <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
-                    <AlertComponent showAlert={false} />
+                    <AlertComponent
+                        showAlert={showAlert}
+                        handleClickAlert={this.handleClickAlert}
+                    />
                 </div>
             </div>
         );
     }
 }
-//
-// export default connect((state) => ({}), {
-//     // showToastAction: action.toast.showToast,
-//     // hideToastAction: action.toast.hideToast,
-//     // showProgressAction: action.progress.showProgress,
-//     // hideProgressAction: action.progress.hideProgress,
-//     // initializeData: action.shopList.initializeData,
-// })(Number);
 
-
-//
-// render(
-//     <Number />,
-//     document.getElementById('app'),
-// );
+export default connect((state) => {
+    console.log('connect state: ', state);
+    return {
+        number: state.changeNumber.number,
+        showAlert: state.toggleAlert.showAlert,
+    };
+}, {
+    incrementNum: action.number.incrementNum,
+    decrementNum: action.number.decrementNum,
+    clearNum: action.number.clearNum,
+    toggleAlert: action.alert.toggleAlert,
+})(Sample);
