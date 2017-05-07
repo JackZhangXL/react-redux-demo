@@ -14,3 +14,11 @@ export const clearNum = (num) => ({
     type: constant.CLEAR_NUM,
     num,
 });
+
+export const showAlert = () => ({
+    type: constant.SHOW_ALERT,
+});
+
+export const hideAlert = () => ({
+    type: constant.HIDE_ALERT,
+});

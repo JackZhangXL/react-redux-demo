@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'Redux';
+import { createStore } from 'redux';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
 import './originRedux.pcss';
 
-const store = createStore((state, action) => {
+const reducer = (state, action) => {
     if (typeof state === 'undefined') {
         return 0;
     }
@@ -20,7 +20,9 @@ const store = createStore((state, action) => {
         default:
             return state;
     }
-});
+};
+
+const store = createStore(reducer);
 
 const update = () => {
     const valueEl = document.getElementsByClassName('numValue');
@@ -45,7 +47,7 @@ export default class Number extends Component {
 
     render() {
         return (
-            <div className="numWrap">
+            <div className="wrap">
                 Current Number: <span className="numValue">0</span>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
@@ -59,5 +61,5 @@ export default class Number extends Component {
 
 render(
     <Number />,
-    document.getElementById('app')
+    document.getElementById('app'),
 );

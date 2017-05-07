@@ -1,55 +1,69 @@
-import { createStore } from 'Redux';
-import * as constant from '../configs/action';
-import * as action from '../actions/number';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Button, Alert } from 'antd';
+import 'antd/dist/antd.css';
+import { changeNumber } from '../reducers/number';
+import * as actions from '../actions/number';
 import './originRedux.pcss';
 
-function counter(state, action) {
-    if (typeof state === 'undefined') {
-        return 0;
+const store = createStore(changeNumber);
+
+const update = () => {
+    const valueEl = document.getElementsByClassName('numValue');
+    valueEl[0].innerHTML = store.getState().number;
+
+    const alertEl = document.getElementsByClassName('alert');
+    if (store.getState().showAlert) {
+        alertEl[0].style.display = 'none';
+    } else {
+        alertEl[0].style.display = 'block';
     }
+};
 
-    switch (action.type) {
-        case constant.INCREMENT:
-            return state + 1;
-        case constant.DECREMENT:
-            return state - 1;
-        case constant.CLEAR_NUM:
-            return 0;
-        default:
-            return state;
-    }
-}
+store.subscribe(update);
 
-const store = createStore(counter);
-const valueEl = document.getElementById('value');
+export default class Number extends Component {
 
-function render() {
-    valueEl.innerHTML = store.getState().toString();
-}
+    addNum = () => {
+        store.dispatch(actions.incrementNum());
+    };
 
-render();
-store.subscribe(render);
+    minusNum = () => {
+        store.dispatch(actions.decrementNum());
+    };
 
-document.getElementById('increment')
-    .addEventListener('click', () => {
-        store.dispatch(action.incrementNum());
-    });
+    clearNum = () => {
+        store.dispatch(actions.clearNum());
+    };
 
-document.getElementById('decrement')
-    .addEventListener('click', () => {
-        store.dispatch(action.decrementNum());
-    });
-
-document.getElementById('clear')
-    .addEventListener('click', () => {
-        if (store.getState() !== 0) {
-            store.dispatch(action.clearNum());
+    toggleAlert = () => {
+        if (store.getState().showAlert) {
+            store.dispatch(actions.hideAlert());
+        } else {
+            store.dispatch(actions.showAlert());
         }
-    });
+    };
 
-document.getElementById('incrementAsync')
-    .addEventListener('click', () => {
-        setTimeout(() => {
-            store.dispatch({ type: constant.INCREMENT });
-        }, 1000);
-    });
+    render() {
+        return (
+            <div className="wrap">
+                Current Number: <span className="numValue">0</span>
+                <div>
+                    <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
+                    <Button size="large" className="numBtn" onClick={this.minusNum}>-</Button>
+                    <Button size="large" className="numBtn" onClick={this.clearNum}>clear</Button>
+                </div>
+                <div>
+                    <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
+                    <Alert className="alert" message="Hello Redux" type="success" />
+                </div>
+            </div>
+        );
+    }
+}
+
+render(
+    <Number />,
+    document.getElementById('app'),
+);

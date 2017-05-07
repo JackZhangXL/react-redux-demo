@@ -1,9 +1,13 @@
-import { createStore } from 'Redux';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Button } from 'antd';
+import 'antd/dist/antd.css';
 import * as constant from '../configs/action';
-import * as action from '../actions/number';
+import * as actions from '../actions/number';
 import './originRedux.pcss';
 
-function counter(state, action) {
+const reducer = (state, action) => {
     if (typeof state === 'undefined') {
         return 0;
     }
@@ -18,38 +22,46 @@ function counter(state, action) {
         default:
             return state;
     }
+};
+
+const store = createStore(reducer);
+
+const update = () => {
+    const valueEl = document.getElementsByClassName('numValue');
+    valueEl[0].innerHTML = store.getState().toString();
+};
+
+store.subscribe(update);
+
+export default class Number extends Component {
+
+    addNum = () => {
+        store.dispatch(actions.incrementNum());
+    };
+
+    minusNum = () => {
+        store.dispatch(actions.decrementNum());
+    };
+
+    clearNum = () => {
+        store.dispatch(actions.clearNum());
+    };
+
+    render() {
+        return (
+            <div className="wrap">
+                Current Number: <span className="numValue">0</span>
+                <div>
+                    <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
+                    <Button size="large" className="numBtn" onClick={this.minusNum}>-</Button>
+                    <Button size="large" className="numBtn" onClick={this.clearNum}>clear</Button>
+                </div>
+            </div>
+        );
+    }
 }
 
-const store = createStore(counter);
-const valueEl = document.getElementById('value');
-
-function render() {
-    valueEl.innerHTML = store.getState().toString();
-}
-
-render();
-store.subscribe(render);
-
-document.getElementById('increment')
-    .addEventListener('click', () => {
-        store.dispatch(action.incrementNum());
-    });
-
-document.getElementById('decrement')
-    .addEventListener('click', () => {
-        store.dispatch(action.decrementNum());
-    });
-
-document.getElementById('clear')
-    .addEventListener('click', () => {
-        if (store.getState() !== 0) {
-            store.dispatch(action.clearNum());
-        }
-    });
-
-document.getElementById('incrementAsync')
-    .addEventListener('click', () => {
-        setTimeout(() => {
-            store.dispatch({ type: constant.INCREMENT });
-        }, 1000);
-    });
+render(
+    <Number />,
+    document.getElementById('app'),
+);
