@@ -3,8 +3,6 @@ import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
-import * as constant from '../configs/action';
-import * as actions from '../actions/number';
 import './originRedux.pcss';
 
 const reducer = (state, action) => {
@@ -13,11 +11,11 @@ const reducer = (state, action) => {
     }
 
     switch (action.type) {
-        case constant.INCREMENT:
+        case 'INCREMENT':
             return state + 1;
-        case constant.DECREMENT:
+        case 'DECREMENT':
             return state - 1;
-        case constant.CLEAR_NUM:
+        case 'CLEAR_NUM':
             return 0;
         default:
             return state;
@@ -36,20 +34,21 @@ store.subscribe(update);
 export default class Number extends Component {
 
     addNum = () => {
-        store.dispatch(actions.incrementNum());
+        store.dispatch({ type: 'INCREMENT' });
     };
 
     minusNum = () => {
-        store.dispatch(actions.decrementNum());
+        store.dispatch({ type: 'DECREMENT' });
     };
 
     clearNum = () => {
-        store.dispatch(actions.clearNum());
+        store.dispatch({ type: 'CLEAR_NUM' });
     };
 
     render() {
         return (
             <div className="wrap">
+                <h3>origin Redux</h3>
                 Current Number: <span className="numValue">0</span>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>

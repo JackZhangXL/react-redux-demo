@@ -86,9 +86,44 @@ const config = {
     ],
 };
 
-const entriesList = fs.readdirSync(ENTRIES).filter((item) => {
-    return item.split('.')[1] === 'js';
+let entriesList = [];
+let entriesPathTemp = '';
+const dictories = fs.readdirSync(SRC).filter((item) => true);
+console.log(dictories);
+
+dictories.forEach((dic) => {
+    console.log(dic);
+    const pathTemp = path.join(SRC, dic);
+    console.log(pathTemp);
+
+    const entriesTemp = fs.readdirSync(pathTemp).filter((item) => {
+        console.log(item);
+        return item === 'entries';
+    });
+    console.log(entriesTemp);
+    if (entriesTemp.length) {
+        entriesPathTemp = path.join(pathTemp, entriesTemp[0]);
+        console.log(entriesPathTemp);
+        const files = fs.readdirSync(entriesPathTemp).filter((item) => {
+            return item.split('.')[1] === 'js';
+        });
+
+        const entries = files.map((item) => {
+            return {
+                fileName: item,
+                filePath: entriesPathTemp,
+            }
+        });
+        console.log(entries);
+
+        entriesList = entriesList.concat(entries);
+    }
 });
+
+// const entriesList = fs.readdirSync(ENTRIES).filter((item) => {
+//     console.log(item);
+//     return item.split('.')[1] === 'js';
+// });
 console.log('entriesList: ', entriesList);
 
 entriesList.forEach((item) => {
@@ -98,10 +133,10 @@ entriesList.forEach((item) => {
     } = config;
 
 console.log('item: ', item);
-    entry[item] = [`${ENTRIES}/${item}`];
-console.log('entry[item]: ', entry[item]);
+    entry[item.fileName] = [`${item.filePath}/${item.fileName}`];
+console.log('entry[item]: ', entry[item.fileName]);
 
-    const htmlName = item.split('.')[0].toLowerCase();
+    const htmlName = item.fileName.split('.')[0].toLowerCase();
     plugins.push(
         new HtmlWebpackPlugin({
             template: `${TEMPLATE}/index.html`,
@@ -110,7 +145,7 @@ console.log('entry[item]: ', entry[item]);
             inject: 'body',
             chunks: [
                 // 'common',
-                item,
+                item.fileName,
             ]
         })
     );

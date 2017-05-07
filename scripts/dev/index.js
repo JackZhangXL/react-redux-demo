@@ -24,7 +24,7 @@ const openBrowser = () => {
     const address = server.listeningApp.address();
     const url = `http://${address.address}:${address.port}`;
     console.log(`   server started: ${url}`);
-    open(`${url}/originreduxwithreducer.html`);
+    open(`${url}/originreduxreducer.html`);
 };
 
 compiler.plugin('done', () => {
