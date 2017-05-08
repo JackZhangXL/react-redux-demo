@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import action from '../../actions/index';
 import NumberComponent from '../../components/number/number';
 import AlertComponent from '../../components/alert/alert';
+import FetchDataComponent from '../../components/fetchData/fetchData';
 import './sample.pcss';
 
 class Sample extends Component {
@@ -24,6 +25,10 @@ class Sample extends Component {
         this.props.toggleAlert();
     };
 
+    handleClickFetchData = () => {
+        // this.props.toggleAlert();
+    };
+
     render() {
         const {
             number,
@@ -32,7 +37,7 @@ class Sample extends Component {
 
         return (
             <div className="wrap">
-                <h3>recat redux</h3>
+                <h3>recat redux async</h3>
                 <NumberComponent
                     value={number}
                     handleClickAdd={this.handleClickAdd}
@@ -42,6 +47,10 @@ class Sample extends Component {
                 <AlertComponent
                     showAlert={showAlert}
                     handleClickAlert={this.handleClickAlert}
+                />
+                <FetchDataComponent
+                    showloading={false}
+                    handleClickFetchData={this.handleClickFetchData}
                 />
             </div>
         );

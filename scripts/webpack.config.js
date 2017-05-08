@@ -42,10 +42,10 @@ const config = {
                 exclude: /node_modules/,
                 use: 'babel-loader',
             },
-            // {
-            //     test: /\.(png|jpg|gif)$/,
-            //     loader: 'url-loader?limit=2048000'
-            // },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'url-loader?limit=2048000'
+            },
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
