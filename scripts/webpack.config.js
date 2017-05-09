@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PostcssImport = require('postcss-import');
@@ -86,57 +87,19 @@ const config = {
     ],
 };
 
-let entriesList = [];
-let entriesPathTemp = '';
-const dictories = fs.readdirSync(SRC).filter((item) => true);
-console.log(dictories);
 
-dictories.forEach((dic) => {
-    console.log(dic);
-    const pathTemp = path.join(SRC, dic);
-    console.log(pathTemp);
-
-    const entriesTemp = fs.readdirSync(pathTemp).filter((item) => {
-        console.log(item);
-        return item === 'entries';
-    });
-    console.log(entriesTemp);
-    if (entriesTemp.length) {
-        entriesPathTemp = path.join(pathTemp, entriesTemp[0]);
-        console.log(entriesPathTemp);
-        const files = fs.readdirSync(entriesPathTemp).filter((item) => {
-            return item.split('.')[1] === 'js';
-        });
-
-        const entries = files.map((item) => {
-            return {
-                fileName: item,
-                filePath: entriesPathTemp,
-            }
-        });
-        console.log(entries);
-
-        entriesList = entriesList.concat(entries);
-    }
-});
-
-// const entriesList = fs.readdirSync(ENTRIES).filter((item) => {
-//     console.log(item);
-//     return item.split('.')[1] === 'js';
-// });
-console.log('entriesList: ', entriesList);
-
-entriesList.forEach((item) => {
+const entryFileNameList = glob.sync(path.join(SRC, '*/entries') + '/*.js');
+entryFileNameList.forEach((item) => {
     const {
         entry,
         plugins
     } = config;
 
-console.log('item: ', item);
-    entry[item.fileName] = [`${item.filePath}/${item.fileName}`];
-console.log('entry[item]: ', entry[item.fileName]);
+    let fileName = path.basename(item, '.js');
+    entry[fileName] = `${item}`;
+console.log('entry[item]: ', entry[fileName]);
 
-    const htmlName = item.fileName.split('.')[0].toLowerCase();
+    const htmlName = fileName.toLowerCase();
     plugins.push(
         new HtmlWebpackPlugin({
             template: `${TEMPLATE}/index.html`,
@@ -145,7 +108,7 @@ console.log('entry[item]: ', entry[item.fileName]);
             inject: 'body',
             chunks: [
                 // 'common',
-                item.fileName,
+                fileName,
             ]
         })
     );
