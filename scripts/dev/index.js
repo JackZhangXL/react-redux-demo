@@ -7,10 +7,12 @@ import webpackConfig from '../webpack.config';
 const compiler = webpack(webpackConfig);
 
 const SRC = path.join(process.cwd(), 'src');
+const MOCK_SERVER = path.join(process.cwd(), 'mock-server');
 
 const devServerOptions = {
     contentBase: [
-        SRC
+        SRC,
+        MOCK_SERVER,
     ],
     hot: true,
     historyApiFallback: true,

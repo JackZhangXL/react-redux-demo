@@ -44,7 +44,7 @@ const config = {
             },
             {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader?limit=2048000'
+                loader: 'url-loader?limit=2048000',
             },
             {
                 test: /\.css$/,

@@ -1,0 +1,6 @@
+{
+    "code": 200,
+    "msg": {
+        "msg": "This is Redux Async sample data."
+    }
+}

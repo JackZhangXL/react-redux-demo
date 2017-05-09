@@ -26,13 +26,15 @@ class Sample extends Component {
     };
 
     handleClickFetchData = () => {
-        // this.props.toggleAlert();
+        this.props.fetchDataAction();
     };
 
     render() {
         const {
             number,
             showAlert,
+            fetching,
+            data,
         } = this.props;
 
         return (
@@ -49,23 +51,24 @@ class Sample extends Component {
                     handleClickAlert={this.handleClickAlert}
                 />
                 <FetchDataComponent
-                    showloading={false}
+                    showloading={fetching}
                     handleClickFetchData={this.handleClickFetchData}
                 />
+                <p>{ data !== null ? data.msg : '' }</p>
             </div>
         );
     }
 }
 
-export default connect((state) => {
-    console.log('connect state: ', state);
-    return {
-        number: state.changeNumber.number,
-        showAlert: state.toggleAlert.showAlert,
-    };
-}, {
+export default connect((state) => ({
+    number: state.changeNumber.number,
+    showAlert: state.toggleAlert.showAlert,
+    fetching: state.fetchData.fetching,
+    data: state.fetchData.data,
+}), {
     incrementNum: action.number.incrementNum,
     decrementNum: action.number.decrementNum,
     clearNum: action.number.clearNum,
     toggleAlert: action.alert.toggleAlert,
+    fetchDataAction: action.fetchDataAction.fetchDataAction,
 })(Sample);
