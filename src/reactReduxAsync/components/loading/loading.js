@@ -8,7 +8,7 @@ export default class Loading extends Component {
         } = this.props;
 
         return (
-            <div className={'loading' + (show ? '' : ' hide')} />
+            <div className={`loading${show ? '' : ' hide'}`} />
         );
     }
 }
