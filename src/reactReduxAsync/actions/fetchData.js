@@ -2,16 +2,6 @@ import fetch from 'isomorphic-fetch';
 import * as constant from '../configs/action';
 import { sleep } from '../lib/common';
 
-// export default {
-//     requestData: () => ({
-//         type: constant.REQUEST_DATA,
-//     }),
-//     receiveData: (data) => ({
-//         type: constant.RECEIVE_DATA,
-//         data,
-//     }),
-// };
-
 const requestData = () => ({
     type: constant.REQUEST_DATA,
 });
@@ -20,7 +10,6 @@ const receiveData = (data) => ({
     type: constant.RECEIVE_DATA,
     data: data.msg,
 });
-
 
 const doFetchData = () => async(dispatch) => {
     dispatch(requestData());

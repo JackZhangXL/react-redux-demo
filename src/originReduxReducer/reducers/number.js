@@ -4,7 +4,6 @@ const initialState = {
     number: 0,
 };
 
-// 原先是number，现在state为object
 export default (state = initialState, action) => {
     switch (action.type) {
         case constant.INCREMENT:

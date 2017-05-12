@@ -15,9 +15,9 @@ const update = () => {
 
     const alertEl = document.getElementsByClassName('alert');
     if (store.getState().toggleAlert.showAlert) {
-        alertEl[0].style.display = 'none';
-    } else {
         alertEl[0].style.display = 'block';
+    } else {
+        alertEl[0].style.display = 'none';
     }
 };
 

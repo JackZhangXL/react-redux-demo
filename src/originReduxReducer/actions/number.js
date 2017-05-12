@@ -1,16 +1,13 @@
 import * as constant from '../configs/action';
 
-export const incrementNum = (num) => ({
+export const incrementNum = () => ({
     type: constant.INCREMENT,
-    num,
 });
 
-export const decrementNum = (num) => ({
+export const decrementNum = () => ({
     type: constant.DECREMENT,
-    num,
 });
 
-export const clearNum = (num) => ({
+export const clearNum = () => ({
     type: constant.CLEAR_NUM,
-    num,
 });
