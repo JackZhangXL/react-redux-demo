@@ -1,6 +1,7 @@
 {
     "extends": "eslint-config-davinci",
     "rules": {
-        "import/no-unresolved": "off"
+        "import/no-unresolved": "off",
+        "no-prototype-builtins": "off"
     }
 }
