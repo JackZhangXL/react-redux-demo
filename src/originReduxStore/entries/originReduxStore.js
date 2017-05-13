@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
+// import { applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
 import reducer from '../reducers/index';
 import actions from '../actions/index';
+// import { createStore } from '../lib/common';
 import './originRedux.pcss';
 
 const logger = createLogger();
@@ -13,6 +15,8 @@ const store = createStore(reducer, compose(
     applyMiddleware(logger),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
+
+// const store = createStore(reducer);
 
 const update = () => {
     const valueEl = document.getElementsByClassName('numValue');
@@ -26,7 +30,7 @@ const update = () => {
     }
 };
 
-store.subscribe(update);
+const cancelUpdate = store.subscribe(update);
 
 export default class Number extends Component {
 
@@ -49,7 +53,7 @@ export default class Number extends Component {
     render() {
         return (
             <div className="wrap">
-                <h3>origin Redux combine reducer</h3>
+                <h3>origin Redux store</h3>
                 Current Number: <span className="numValue">0</span>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
@@ -58,7 +62,10 @@ export default class Number extends Component {
                 </div>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.toggleAlert}>Alert</Button>
-                    <Alert className="alert" message="Hello Redux" type="success" />
+                    <Alert className="alert" message="Hello Redux" type="success" style={{ display: 'none' }} />
+                </div>
+                <div>
+                    <Button size="large" className="numBtn" onClick={cancelUpdate}>unsubscribe</Button>
                 </div>
             </div>
         );

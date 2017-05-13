@@ -20,17 +20,21 @@ separate action from others
 
 http://0.0.0.0:9999/originreduxaction.html
 
-### Chapter 3 originReduxReducer
+### Chapter 3 originReduxReducer & originReduxCombineReducer
 
 separate reducer from others
 
 http://0.0.0.0:9999/originreduxreducer.html
 
-### Chapter 4 originReduxCombineReducer
-
-learn CombineReducer
+learn combineReducers
 
 http://0.0.0.0:9999/originreduxcombinereducer.html
+
+### Chapter 4 originReduxStore
+
+learn createStore compose
+
+http://0.0.0.0:9999/originreduxstore.html
 
 ### Chapter 5 reactRedux
 
