@@ -48,13 +48,10 @@ class Sample extends Component {
     }
 }
 
-export default connect((state) => {
-    console.log('connect state: ', state);
-    return {
-        number: state.changeNumber.number,
-        showAlert: state.toggleAlert.showAlert,
-    };
-}, {
+export default connect((state) => ({
+    number: state.changeNumber.number,
+    showAlert: state.toggleAlert.showAlert,
+}), {
     incrementNum: action.number.incrementNum,
     decrementNum: action.number.decrementNum,
     clearNum: action.number.clearNum,
