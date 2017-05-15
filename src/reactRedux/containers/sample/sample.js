@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import action from '../../actions/index';
@@ -48,12 +49,55 @@ class Sample extends Component {
     }
 }
 
-export default connect((state) => ({
-    number: state.changeNumber.number,
-    showAlert: state.toggleAlert.showAlert,
-}), {
+const mapStateToProps = (state) => {
+    return {
+        number: state.changeNumber.number,
+        showAlert: state.toggleAlert.showAlert,
+    };
+};
+
+const mapDispatchToProps = {
     incrementNum: action.number.incrementNum,
     decrementNum: action.number.decrementNum,
     clearNum: action.number.clearNum,
     toggleAlert: action.alert.toggleAlert,
-})(Sample);
+};
+
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
+//         incrementNum: bindActionCreators(action.number.incrementNum, dispatch),
+//         decrementNum: bindActionCreators(action.number.decrementNum, dispatch),
+//         clearNum: bindActionCreators(action.number.clearNum, dispatch),
+//         toggleAlert: bindActionCreators(action.alert.toggleAlert, dispatch),
+//     };
+// };
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Sample);
+
+// const mergeProps = (stateProps, dispatchProps, ownProps) => {
+//     return {
+//         ...ownProps,
+//         ...stateProps,
+//         incrementNum: dispatchProps.incrementNum,   // 只暴露出 incrementNum
+//     };
+// };
+//
+// const mergeProps = (stateProps, dispatchProps, ownProps) => {
+//     return {
+//         ...ownProps,
+//         state: stateProps,
+//         actions: {
+//             ...dispatchProps,
+//             ...ownProps.actions,
+//         },
+//     };
+// };
+//
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps,
+//     mergeProps,
+// )(Sample);

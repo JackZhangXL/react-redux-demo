@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';         // 引入 react-redux
 import reducer from '../reducers/index';
 import Sample from '../containers/sample/sample';
 
