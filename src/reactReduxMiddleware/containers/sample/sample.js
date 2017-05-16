@@ -33,7 +33,7 @@ class Sample extends Component {
 
         return (
             <div className="wrap">
-                <h3>recat redux</h3>
+                <h3>recat redux middleware</h3>
                 <NumberComponent
                     value={number}
                     handleClickAdd={this.handleClickAdd}
