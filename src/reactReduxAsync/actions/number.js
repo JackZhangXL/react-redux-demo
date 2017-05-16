@@ -1,16 +1,13 @@
 import * as constant from '../configs/action';
 
 export default {
-    incrementNum: (num) => ({
+    incrementNum: () => ({
         type: constant.INCREMENT,
-        num,
     }),
-    decrementNum: (num) => ({
+    decrementNum: () => ({
         type: constant.DECREMENT,
-        num,
     }),
-    clearNum: (num) => ({
+    clearNum: () => ({
         type: constant.CLEAR_NUM,
-        num,
     }),
 };

@@ -1,28 +1,27 @@
 import * as constant from '../configs/action';
+import { createReducer } from '../lib/common';
 
 const initialState = {
     number: 0,
 };
 
-// 原先是number，现在state为object
-export default (state = initialState, action) => {
-    switch (action.type) {
-        case constant.INCREMENT:
-            return {
-                ...state,
-                number: state.number + 1,
-            };
-        case constant.DECREMENT:
-            return {
-                ...state,
-                number: state.number - 1,
-            };
-        case constant.CLEAR_NUM:
-            return {
-                ...state,
-                number: 0,
-            };
-        default:
-            return state;
-    }
-};
+export default createReducer(initialState, {
+    [constant.INCREMENT]: (state, action) => {
+        return {
+            ...state,
+            number: state.number + 1,
+        };
+    },
+    [constant.DECREMENT]: (state, action) => {
+        return {
+            ...state,
+            number: state.number - 1,
+        };
+    },
+    [constant.CLEAR_NUM]: (state, action) => {
+        return {
+            ...state,
+            number: 0,
+        };
+    },
+});

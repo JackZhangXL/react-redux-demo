@@ -1,18 +1,15 @@
 import * as constant from '../configs/action';
+import { createReducer } from '../lib/common';
 
 const initialState = {
     showAlert: false,
 };
 
-// 原先是number，现在state为object
-export default (state = initialState, action) => {
-    switch (action.type) {
-        case constant.TOGGLE_ALERT:
-            return {
-                ...state,
-                showAlert: !state.showAlert,
-            };
-        default:
-            return state;
-    }
-};
+export default createReducer(initialState, {
+    [constant.TOGGLE_ALERT]: (state, action) => {
+        return {
+            ...state,
+            showAlert: !state.showAlert,
+        };
+    },
+});
