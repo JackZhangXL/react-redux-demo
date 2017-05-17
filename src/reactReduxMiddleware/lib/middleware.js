@@ -31,15 +31,15 @@
 
 // Step3
 // 只打印出 Action
-export const loggerAction = (store) => (preDispatch) => (action) => {
+export const loggerAction = (store) => (dispatch) => (action) => {
     console.log('dispatching', action);
-    const result = preDispatch(action);
+    const result = dispatch(action);
     return result;
 };
 
 // 只打印出 更新后的state
-export const loggerState = (store) => (preDispatch) => (action) => {
-    const result = preDispatch(action);
+export const loggerState = (store) => (dispatch) => (action) => {
+    const result = dispatch(action);
     console.log('next state', store.getState());
     return result;
 };

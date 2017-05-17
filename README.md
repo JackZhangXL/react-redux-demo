@@ -42,11 +42,13 @@ learn react-redux
 
 http://0.0.0.0:9999/reactredux.html
 
-### Chapter 6 reactReduxMiddleware & reactReduxAsync
+### Chapter 6 reactReduxMiddleware
 
 learn middleware
 
 http://0.0.0.0:9999/reactreduxmiddleware.html
+
+### Chapter 7 reactReduxAsync
 
 learn asynchronous operation
 
