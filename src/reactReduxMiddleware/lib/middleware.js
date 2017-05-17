@@ -44,14 +44,31 @@ export const loggerState = (store) => (preDispatch) => (action) => {
     return result;
 };
 
-export const useApplyMiddleware = (store, middlewares) => {
-    let dispatch = store.dispatch;
-    middlewares.forEach((middleware) => {
-        dispatch = middleware(store)(dispatch);
-    });
+// export const applyMiddleware = (store, middlewares) => {
+//     let dispatch = store.dispatch;
+//     middlewares.forEach((middleware) => {
+//         dispatch = middleware(store)(dispatch);
+//     });
+//
+//     return {
+//         ...store,
+//         dispatch,
+//     };
+// };
 
-    return {
-        ...store,
-        dispatch,
+// final Step
+export const applyMiddleware = (...middlewares) => {
+    return (createStore) => (reducer, preloadedState, enhancer) => {
+        const store = createStore(reducer, preloadedState, enhancer);
+
+        let dispatch = store.dispatch;
+        middlewares.forEach((middleware) => {
+            dispatch = middleware(store)(dispatch);
+        });
+
+        return {
+            ...store,
+            dispatch,
+        };
     };
 };
