@@ -4,12 +4,16 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';         // 引入 react-redux
 import reducer from '../reducers/index';
 import Sample from '../containers/sample/sample';
-import { logger1, logger2 } from '../lib/middleware';
+import { loggerAction, loggerState, useApplyMiddleware } from '../lib/middleware';
 
-const store = createStore(reducer, compose(
-    applyMiddleware(logger1, logger2),
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
-));
+// Step2
+// const store = createStore(reducer);
+// loggerAction(store);
+// loggerState(store);
+
+// Step3
+let store = createStore(reducer);
+store = useApplyMiddleware(store, [loggerAction, loggerState]);
 
 render(
     <Provider store={store}>
