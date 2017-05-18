@@ -1,6 +1,6 @@
 {
     "code": 200,
     "msg": {
-        "msg": "This is Redux Async sample data."
+        "msg": "Fetched Redux Async sample data successfully!"
     }
 }
