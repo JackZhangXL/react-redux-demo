@@ -5,6 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "eslint ./src",
+    "start": "nodeppt start -p 9998 -d ppt -w",
     "dev": "cross-env NODE_ENV=development node ./scripts/dev.js"
   },
   "repository": {
@@ -41,7 +42,7 @@
     "fs-promise": "^2.0.2",
     "glob": "^7.1.1",
     "html-webpack-plugin": "^2.28.0",
-    "normalize.css": "^7.0.0",
+    "nodeppt": "^1.4.2",
     "open": "^0.0.5",
     "postcss-cssnext": "^2.10.0",
     "postcss-import": "^9.1.0",

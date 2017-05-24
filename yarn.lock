@@ -43,6 +43,10 @@ add-dom-event-listener@1.x:
   dependencies:
     object-assign "4.x"
 
+after@0.8.1:
+  version "0.8.1"
+  resolved "http://r.npm.sankuai.com/after/download/after-0.8.1.tgz#ab5d4fb883f596816d3515f8f791c0af486dd627"
+
 ajv-keywords@^1.0.0, ajv-keywords@^1.1.1:
   version "1.5.1"
   resolved "http://r.npm.sankuai.com/ajv-keywords/download/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
@@ -209,6 +213,10 @@ array.prototype.find@^2.0.1:
   dependencies:
     define-properties "^1.1.2"
     es-abstract "^1.7.0"
+
+arraybuffer.slice@0.0.6:
+  version "0.0.6"
+  resolved "http://r.npm.sankuai.com/arraybuffer.slice/download/arraybuffer.slice-0.0.6.tgz#f33b2159f0532a3f3107a272c0ccfbd1ad2979ca"
 
 arrify@^1.0.0:
   version "1.0.1"
@@ -991,6 +999,10 @@ babylon@^6.11.0, babylon@^6.15.0, babylon@^6.17.0:
   version "6.17.0"
   resolved "http://r.npm.sankuai.com/babylon/download/babylon-6.17.0.tgz#37da948878488b9c4e3c4038893fa3314b3fc932"
 
+backo2@1.0.2:
+  version "1.0.2"
+  resolved "http://r.npm.sankuai.com/backo2/download/backo2-1.0.2.tgz#31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
+
 balanced-match@0.1.0:
   version "0.1.0"
   resolved "http://r.npm.sankuai.com/balanced-match/download/balanced-match-0.1.0.tgz#b504bd05869b39259dd0c5efc35d843176dccc4a"
@@ -1003,9 +1015,17 @@ balanced-match@^0.4.1, balanced-match@^0.4.2:
   version "0.4.2"
   resolved "http://r.npm.sankuai.com/balanced-match/download/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
 
+base64-arraybuffer@0.1.2:
+  version "0.1.2"
+  resolved "http://r.npm.sankuai.com/base64-arraybuffer/download/base64-arraybuffer-0.1.2.tgz#474df4a9f2da24e05df3158c3b1db3c3cd46a154"
+
 base64-js@^1.0.2:
   version "1.2.0"
   resolved "http://r.npm.sankuai.com/base64-js/download/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
+
+base64id@0.1.0:
+  version "0.1.0"
+  resolved "http://r.npm.sankuai.com/base64id/download/base64id-0.1.0.tgz#02ce0fdeee0cef4f40080e1e73e834f0b1bfce3f"
 
 batch@0.5.3:
   version "0.5.3"
@@ -1017,6 +1037,16 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+benchmark@1.0.0:
+  version "1.0.0"
+  resolved "http://r.npm.sankuai.com/benchmark/download/benchmark-1.0.0.tgz#2f1e2fa4c359f11122aa183082218e957e390c73"
+
+better-assert@~1.0.0:
+  version "1.0.2"
+  resolved "http://r.npm.sankuai.com/better-assert/download/better-assert-1.0.2.tgz#40866b9e1b9e0b55b481894311e68faffaebc522"
+  dependencies:
+    callsite "1.0.0"
+
 big.js@^3.1.3:
   version "3.1.3"
   resolved "http://r.npm.sankuai.com/big.js/download/big.js-3.1.3.tgz#4cada2193652eb3ca9ec8e55c9015669c9806978"
@@ -1024,6 +1054,10 @@ big.js@^3.1.3:
 binary-extensions@^1.0.0:
   version "1.8.0"
   resolved "http://r.npm.sankuai.com/binary-extensions/download/binary-extensions-1.8.0.tgz#48ec8d16df4377eae5fa5884682480af4d95c774"
+
+blob@0.0.2:
+  version "0.0.2"
+  resolved "http://r.npm.sankuai.com/blob/download/blob-0.0.2.tgz#b89562bd6994af95ba1e812155536333aa23cf24"
 
 block-stream@*:
   version "0.0.9"
@@ -1126,6 +1160,10 @@ browserslist@^1.0.0, browserslist@^1.3.6, browserslist@^1.5.2, browserslist@^1.7
     caniuse-db "^1.0.30000639"
     electron-to-chromium "^1.2.7"
 
+buffer-crc32@0.2.1:
+  version "0.2.1"
+  resolved "http://r.npm.sankuai.com/buffer-crc32/download/buffer-crc32-0.2.1.tgz#be3e5382fc02b6d6324956ac1af98aa98b08534c"
+
 buffer-shims@~1.0.0:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/buffer-shims/download/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
@@ -1150,6 +1188,10 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "http://r.npm.sankuai.com/builtin-status-codes/download/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
+bytes@0.2.1:
+  version "0.2.1"
+  resolved "http://r.npm.sankuai.com/bytes/download/bytes-0.2.1.tgz#555b08abcb063f8975905302523e4cd4ffdfdf31"
+
 bytes@2.3.0:
   version "2.3.0"
   resolved "http://r.npm.sankuai.com/bytes/download/bytes-2.3.0.tgz#d5b680a165b6201739acb611542aabc2d8ceb070"
@@ -1159,6 +1201,10 @@ caller-path@^0.1.0:
   resolved "http://r.npm.sankuai.com/caller-path/download/caller-path-0.1.0.tgz#94085ef63581ecd3daa92444a8fe94e82577751f"
   dependencies:
     callsites "^0.2.0"
+
+callsite@1.0.0:
+  version "1.0.0"
+  resolved "http://r.npm.sankuai.com/callsite/download/callsite-1.0.0.tgz#280398e5d664bd74038b6f0905153e6e8af1bc20"
 
 callsites@^0.2.0:
   version "0.2.0"
@@ -1217,7 +1263,7 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chokidar@^1.4.3, chokidar@^1.6.0:
+chokidar@^1.0.0-rc3, chokidar@^1.4.3, chokidar@^1.6.0:
   version "1.6.1"
   resolved "http://r.npm.sankuai.com/chokidar/download/chokidar-1.6.1.tgz#2f4447ab5e96e50fb3d789fd90d4c72e0e4c70c2"
   dependencies:
@@ -1345,7 +1391,7 @@ colormin@^1.0.5:
     css-color-names "0.0.4"
     has "^1.0.1"
 
-colors@~1.1.2:
+colors@^1.1.2, colors@~1.1.2:
   version "1.1.2"
   resolved "http://r.npm.sankuai.com/colors/download/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
 
@@ -1355,15 +1401,23 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.9.x:
+commander@2.9.x, commander@^2.9.0:
   version "2.9.0"
   resolved "http://r.npm.sankuai.com/commander/download/commander-2.9.0.tgz#9c99094176e12240cb22d6c5146098400fe0f7d4"
   dependencies:
     graceful-readlink ">= 1.0.0"
 
+commander@~0.6.1:
+  version "0.6.1"
+  resolved "http://r.npm.sankuai.com/commander/download/commander-0.6.1.tgz#fa68a14f6a945d54dbbe50d8cdb3320e9e3b1a06"
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "http://r.npm.sankuai.com/commondir/download/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
+
+component-bind@1.0.0:
+  version "1.0.0"
+  resolved "http://r.npm.sankuai.com/component-bind/download/component-bind-1.0.0.tgz#00c608ab7dcd93897c0009651b1d3a8e1e73bbd1"
 
 component-classes@1.x, component-classes@^1.2.5, component-classes@^1.2.6:
   version "1.2.6"
@@ -1371,9 +1425,17 @@ component-classes@1.x, component-classes@^1.2.5, component-classes@^1.2.6:
   dependencies:
     component-indexof "0.0.3"
 
+component-emitter@1.1.2:
+  version "1.1.2"
+  resolved "http://r.npm.sankuai.com/component-emitter/download/component-emitter-1.1.2.tgz#296594f2753daa63996d2af08d15a95116c9aec3"
+
 component-indexof@0.0.3:
   version "0.0.3"
   resolved "http://r.npm.sankuai.com/component-indexof/download/component-indexof-0.0.3.tgz#11d091312239eb8f32c8f25ae9cb002ffe8d3c24"
+
+component-inherit@0.0.3:
+  version "0.0.3"
+  resolved "http://r.npm.sankuai.com/component-inherit/download/component-inherit-0.0.3.tgz#645fc4adf58b72b649d5cae65135619db26ff143"
 
 compressible@~2.0.8:
   version "2.0.10"
@@ -1408,6 +1470,25 @@ connect-history-api-fallback@^1.3.0:
   version "1.3.0"
   resolved "http://r.npm.sankuai.com/connect-history-api-fallback/download/connect-history-api-fallback-1.3.0.tgz#e51d17f8f0ef0db90a64fdb47de3051556e9f169"
 
+connect@2.11.0:
+  version "2.11.0"
+  resolved "http://r.npm.sankuai.com/connect/download/connect-2.11.0.tgz#9991ce09ff9b85d9ead27f9d41d0b2a2df2f9284"
+  dependencies:
+    buffer-crc32 "0.2.1"
+    bytes "0.2.1"
+    cookie "0.1.0"
+    cookie-signature "1.0.1"
+    debug "*"
+    fresh "0.2.0"
+    methods "0.0.1"
+    multiparty "2.2.0"
+    negotiator "0.3.0"
+    pause "0.0.1"
+    qs "0.6.5"
+    raw-body "0.0.3"
+    send "0.1.4"
+    uid2 "0.0.3"
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "http://r.npm.sankuai.com/console-browserify/download/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -1438,13 +1519,25 @@ convert-source-map@^1.1.0:
   version "1.5.0"
   resolved "http://r.npm.sankuai.com/convert-source-map/download/convert-source-map-1.5.0.tgz#9acd70851c6d5dfdd93d9282e5edf94a03ff46b5"
 
+cookie-signature@1.0.1:
+  version "1.0.1"
+  resolved "http://r.npm.sankuai.com/cookie-signature/download/cookie-signature-1.0.1.tgz#44e072148af01e6e8e24afbf12690d68ae698ecb"
+
 cookie-signature@1.0.6:
   version "1.0.6"
   resolved "http://r.npm.sankuai.com/cookie-signature/download/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
 
+cookie@0.1.0:
+  version "0.1.0"
+  resolved "http://r.npm.sankuai.com/cookie/download/cookie-0.1.0.tgz#90eb469ddce905c866de687efc43131d8801f9d0"
+
 cookie@0.3.1:
   version "0.3.1"
   resolved "http://r.npm.sankuai.com/cookie/download/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
+
+cookie@^0.2.3:
+  version "0.2.4"
+  resolved "http://r.npm.sankuai.com/cookie/download/cookie-0.2.4.tgz#a8c155aa7b9b2cf2c4d32ebc7b9a0aa288ccc6bd"
 
 core-js@^1.0.0:
   version "1.2.7"
@@ -1670,6 +1763,40 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "http://r.npm.sankuai.com/date-now/download/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
+debug@*, debug@^2.1.1, debug@^2.2.0:
+  version "2.6.6"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-2.6.6.tgz#a9fa6fbe9ca43cf1e79f73b75c0189cbb7d6db5a"
+  dependencies:
+    ms "0.7.3"
+
+debug@0.7.4, debug@~0.7.4:
+  version "0.7.4"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
+
+debug@1.0.2:
+  version "1.0.2"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-1.0.2.tgz#3849591c10cce648476c3c7c2e2e3416db5963c4"
+  dependencies:
+    ms "0.6.2"
+
+debug@1.0.3:
+  version "1.0.3"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-1.0.3.tgz#fc8c6b2d6002804b4081c0208e0f6460ba1fa3e4"
+  dependencies:
+    ms "0.6.2"
+
+debug@1.0.4:
+  version "1.0.4"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-1.0.4.tgz#5b9c256bd54b6ec02283176fa8a0ede6d154cbf8"
+  dependencies:
+    ms "0.6.2"
+
+debug@2.1.0:
+  version "2.1.0"
+  resolved "http://r.npm.sankuai.com/debug/download/debug-2.1.0.tgz#33ab915659d8c2cc8a41443d94d6ebd37697ed21"
+  dependencies:
+    ms "0.6.2"
+
 debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "http://r.npm.sankuai.com/debug/download/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
@@ -1687,16 +1814,6 @@ debug@2.6.4:
   resolved "http://r.npm.sankuai.com/debug/download/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
   dependencies:
     ms "0.7.3"
-
-debug@^2.1.1, debug@^2.2.0:
-  version "2.6.6"
-  resolved "http://r.npm.sankuai.com/debug/download/debug-2.6.6.tgz#a9fa6fbe9ca43cf1e79f73b75c0189cbb7d6db5a"
-  dependencies:
-    ms "0.7.3"
-
-debug@~0.7.4:
-  version "0.7.4"
-  resolved "http://r.npm.sankuai.com/debug/download/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
@@ -1868,6 +1985,10 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "http://r.npm.sankuai.com/ee-first/download/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
+ejs@0.8.4:
+  version "0.8.4"
+  resolved "http://r.npm.sankuai.com/ejs/download/ejs-0.8.4.tgz#52e61755e5e97fbc5aeeb07df49a4e062bff30d5"
+
 electron-to-chromium@^1.2.7:
   version "1.3.9"
   resolved "http://r.npm.sankuai.com/electron-to-chromium/download/electron-to-chromium-1.3.9.tgz#db1cba2a26aebcca2f7f5b8b034554468609157d"
@@ -1901,6 +2022,42 @@ encoding@^0.1.11:
   resolved "http://r.npm.sankuai.com/encoding/download/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
   dependencies:
     iconv-lite "~0.4.13"
+
+engine.io-client@1.5.1:
+  version "1.5.1"
+  resolved "http://r.npm.sankuai.com/engine.io-client/download/engine.io-client-1.5.1.tgz#ecd0026d90b065169b9885960183f3d56b8da18e"
+  dependencies:
+    component-emitter "1.1.2"
+    component-inherit "0.0.3"
+    debug "1.0.4"
+    engine.io-parser "1.2.1"
+    has-cors "1.0.3"
+    indexof "0.0.1"
+    parsejson "0.0.1"
+    parseqs "0.0.2"
+    parseuri "0.0.4"
+    ws "0.4.31"
+    xmlhttprequest "https://github.com/rase-/node-XMLHttpRequest/archive/a6b6f2.tar.gz"
+
+engine.io-parser@1.2.1:
+  version "1.2.1"
+  resolved "http://r.npm.sankuai.com/engine.io-parser/download/engine.io-parser-1.2.1.tgz#4462a67d0c70a907c06db2e1de53791a86f5ab37"
+  dependencies:
+    after "0.8.1"
+    arraybuffer.slice "0.0.6"
+    base64-arraybuffer "0.1.2"
+    blob "0.0.2"
+    has-binary "0.1.5"
+    utf8 "2.0.0"
+
+engine.io@1.5.1:
+  version "1.5.1"
+  resolved "http://r.npm.sankuai.com/engine.io/download/engine.io-1.5.1.tgz#8f7a4b2aadf974b71ffd185cffe1e2bdf384ddfb"
+  dependencies:
+    base64id "0.1.0"
+    debug "1.0.3"
+    engine.io-parser "1.2.1"
+    ws "0.5.0"
 
 enhanced-resolve@^3.0.0:
   version "3.1.0"
@@ -2422,6 +2579,10 @@ forwarded@~0.1.0:
   version "0.1.0"
   resolved "http://r.npm.sankuai.com/forwarded/download/forwarded-0.1.0.tgz#19ef9874c4ae1c297bcf078fde63a09b66a84363"
 
+fresh@0.2.0:
+  version "0.2.0"
+  resolved "http://r.npm.sankuai.com/fresh/download/fresh-0.2.0.tgz#bfd9402cf3df12c4a4c310c79f99a3dde13d34a7"
+
 fresh@0.5.0:
   version "0.5.0"
   resolved "http://r.npm.sankuai.com/fresh/download/fresh-0.5.0.tgz#f474ca5e6a9246d6fd8e0953cfa9b9c805afa78e"
@@ -2556,6 +2717,10 @@ glob@^7.0.0, glob@^7.0.3, glob@^7.0.5, glob@^7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+"global@https://github.com/component/global/archive/v2.0.1.tar.gz":
+  version "2.0.1"
+  resolved "https://github.com/component/global/archive/v2.0.1.tar.gz#3fb25343fb66d79991b0f4a429ce3b54480eec3c"
+
 globals@^9.0.0, globals@^9.14.0:
   version "9.17.0"
   resolved "http://r.npm.sankuai.com/globals/download/globals-9.17.0.tgz#0c0ca696d9b9bb694d2e5470bd37777caad50286"
@@ -2614,6 +2779,30 @@ has-ansi@^2.0.0:
   resolved "http://r.npm.sankuai.com/has-ansi/download/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
   dependencies:
     ansi-regex "^2.0.0"
+
+has-binary-data@0.1.3:
+  version "0.1.3"
+  resolved "http://r.npm.sankuai.com/has-binary-data/download/has-binary-data-0.1.3.tgz#8ebb18388b57f19a5231275a16fc18d51f379aae"
+  dependencies:
+    isarray "0.0.1"
+
+has-binary@0.1.5:
+  version "0.1.5"
+  resolved "http://r.npm.sankuai.com/has-binary/download/has-binary-0.1.5.tgz#95e75720ff31b72a3ba89a5b6dce082e4bc6467f"
+  dependencies:
+    isarray "0.0.1"
+
+has-binary@0.1.6:
+  version "0.1.6"
+  resolved "http://r.npm.sankuai.com/has-binary/download/has-binary-0.1.6.tgz#25326f39cfa4f616ad8787894e3af2cfbc7b6e10"
+  dependencies:
+    isarray "0.0.1"
+
+has-cors@1.0.3:
+  version "1.0.3"
+  resolved "http://r.npm.sankuai.com/has-cors/download/has-cors-1.0.3.tgz#502acb9b3104dac33dd2630eaf2f888b0baf4cb3"
+  dependencies:
+    global "https://github.com/component/global/archive/v2.0.1.tar.gz"
 
 has-flag@^1.0.0:
   version "1.0.0"
@@ -2864,6 +3053,10 @@ invert-kv@^1.0.0:
 ipaddr.js@1.3.0:
   version "1.3.0"
   resolved "http://r.npm.sankuai.com/ipaddr.js/download/ipaddr.js-1.3.0.tgz#1e03a52fdad83a8bbb2b25cbf4998b4cffcd3dec"
+
+ipv4@0.0.4:
+  version "0.0.4"
+  resolved "http://r.npm.sankuai.com/ipv4/download/ipv4-0.0.4.tgz#7b614de61b42743fd8f30e4ce0c0fb04253c40bb"
 
 is-absolute-url@^2.0.0:
   version "2.1.0"
@@ -3137,6 +3330,10 @@ json2mq@^0.2.0:
   dependencies:
     string-convert "^0.2.0"
 
+json3@3.2.6:
+  version "3.2.6"
+  resolved "http://r.npm.sankuai.com/json3/download/json3-3.2.6.tgz#f6efc93c06a04de9aec53053df2559bb19e2038b"
+
 json3@^3.3.2:
   version "3.3.2"
   resolved "http://r.npm.sankuai.com/json3/download/json3-3.3.2.tgz#3c0434743df93e2f5c42aee7b19bcb483575f4e1"
@@ -3343,6 +3540,10 @@ math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "http://r.npm.sankuai.com/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
 
+mathjax@2.6.1:
+  version "2.6.1"
+  resolved "http://r.npm.sankuai.com/mathjax/download/mathjax-2.6.1.tgz#bdb1b2f34ee0423825260eab25260dfda99613bb"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "http://r.npm.sankuai.com/media-typer/download/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -3357,6 +3558,10 @@ memory-fs@^0.4.0, memory-fs@~0.4.1:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "http://r.npm.sankuai.com/merge-descriptors/download/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
+
+methods@0.0.1:
+  version "0.0.1"
+  resolved "http://r.npm.sankuai.com/methods/download/methods-0.0.1.tgz#277c90f8bef39709645a8371c51c3b6c648e068c"
 
 methods@~1.1.2:
   version "1.1.2"
@@ -3401,6 +3606,10 @@ mime@1.3.4, mime@1.3.x, mime@^1.3.4:
   version "1.3.4"
   resolved "http://r.npm.sankuai.com/mime/download/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
 
+mime@~1.2.9:
+  version "1.2.11"
+  resolved "http://r.npm.sankuai.com/mime/download/mime-1.2.11.tgz#58203eed86e3a5ef17aed2b7d9ebd47f0a60dd10"
+
 minimalistic-assert@^1.0.0:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/minimalistic-assert/download/minimalistic-assert-1.0.0.tgz#702be2dda6b37f4836bcb3f5db56641b64a1d3d3"
@@ -3433,6 +3642,10 @@ moment@2.x, moment@^2.18.1:
   version "2.18.1"
   resolved "http://r.npm.sankuai.com/moment/download/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
+ms@0.6.2:
+  version "0.6.2"
+  resolved "http://r.npm.sankuai.com/ms/download/ms-0.6.2.tgz#d89c2124c6fdc1353d65a8b77bf1aac4b193708c"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "http://r.npm.sankuai.com/ms/download/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -3445,7 +3658,14 @@ ms@0.7.3:
   version "0.7.3"
   resolved "http://r.npm.sankuai.com/ms/download/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
 
-mute-stream@0.0.5:
+multiparty@2.2.0:
+  version "2.2.0"
+  resolved "http://r.npm.sankuai.com/multiparty/download/multiparty-2.2.0.tgz#a567c2af000ad22dc8f2a653d91978ae1f5316f4"
+  dependencies:
+    readable-stream "~1.1.9"
+    stream-counter "~0.2.0"
+
+mute-stream@0.0.5, mute-stream@~0.0.4:
   version "0.0.5"
   resolved "http://r.npm.sankuai.com/mute-stream/download/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 
@@ -3457,9 +3677,17 @@ mz@^2.6.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
+nan@1.4.x:
+  version "1.4.3"
+  resolved "http://r.npm.sankuai.com/nan/download/nan-1.4.3.tgz#c56b5404698063696f597435f9163c312aea5009"
+
 nan@^2.3.0:
   version "2.6.2"
   resolved "http://r.npm.sankuai.com/nan/download/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
+
+nan@~0.3.0:
+  version "0.3.2"
+  resolved "http://r.npm.sankuai.com/nan/download/nan-0.3.2.tgz#0df1935cab15369075ef160ad2894107aa14dc2d"
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -3470,6 +3698,10 @@ ncname@1.0.x:
   resolved "http://r.npm.sankuai.com/ncname/download/ncname-1.0.0.tgz#5b57ad18b1ca092864ef62b0b1ed8194f383b71c"
   dependencies:
     xml-char-classes "^1.0.0"
+
+negotiator@0.3.0:
+  version "0.3.0"
+  resolved "http://r.npm.sankuai.com/negotiator/download/negotiator-0.3.0.tgz#706d692efeddf574d57ea9fb1ab89a4fa7ee8f60"
 
 negotiator@0.6.1:
   version "0.6.1"
@@ -3530,6 +3762,22 @@ node-pre-gyp@^0.6.29:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
+nodeppt@^1.4.2:
+  version "1.4.2"
+  resolved "http://r.npm.sankuai.com/nodeppt/download/nodeppt-1.4.2.tgz#2903fba21cf438fb877e6c36a8718759956125fd"
+  dependencies:
+    chokidar "^1.0.0-rc3"
+    colors "^1.1.2"
+    commander "^2.9.0"
+    connect "2.11.0"
+    cookie "^0.2.3"
+    debug "^2.2.0"
+    ejs "0.8.4"
+    ipv4 "0.0.4"
+    mathjax "2.6.1"
+    read "^1.0.7"
+    socket.io "1.3.3"
+
 nopt@^4.0.1:
   version "4.0.1"
   resolved "http://r.npm.sankuai.com/nopt/download/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
@@ -3565,10 +3813,6 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
-normalize.css@^7.0.0:
-  version "7.0.0"
-  resolved "http://r.npm.sankuai.com/normalize.css/download/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
-
 npmlog@^4.0.2:
   version "4.0.2"
   resolved "http://r.npm.sankuai.com/npmlog/download/npmlog-4.0.2.tgz#d03950e0e78ce1527ba26d2a7592e9348ac3e75f"
@@ -3600,9 +3844,17 @@ object-assign@4.x, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.
   version "4.1.1"
   resolved "http://r.npm.sankuai.com/object-assign/download/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
+object-component@0.0.3:
+  version "0.0.3"
+  resolved "http://r.npm.sankuai.com/object-component/download/object-component-0.0.3.tgz#f0c69aa50efc95b866c186f400a33769cb2f1291"
+
 object-hash@^1.1.4:
   version "1.1.8"
   resolved "http://r.npm.sankuai.com/object-hash/download/object-hash-1.1.8.tgz#28a659cf987d96a4dabe7860289f3b5326c4a03c"
+
+object-keys@1.0.1:
+  version "1.0.1"
+  resolved "http://r.npm.sankuai.com/object-keys/download/object-keys-1.0.1.tgz#55802e85842c26bbb5ebbc157abf3be302569ba8"
 
 object-keys@^1.0.10, object-keys@^1.0.8:
   version "1.0.11"
@@ -3679,6 +3931,10 @@ optionator@^0.8.2:
     type-check "~0.3.2"
     wordwrap "~1.0.0"
 
+options@>=0.0.5:
+  version "0.0.6"
+  resolved "http://r.npm.sankuai.com/options/download/options-0.0.6.tgz#ec22d312806bb53e731773e7cdaefcf1c643128f"
+
 original@>=0.0.5:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/original/download/original-1.0.0.tgz#9147f93fa1696d04be61e01bd50baeaca656bd3b"
@@ -3745,6 +4001,30 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
+parsejson@0.0.1:
+  version "0.0.1"
+  resolved "http://r.npm.sankuai.com/parsejson/download/parsejson-0.0.1.tgz#9b10c6c0d825ab589e685153826de0a3ba278bcc"
+  dependencies:
+    better-assert "~1.0.0"
+
+parseqs@0.0.2:
+  version "0.0.2"
+  resolved "http://r.npm.sankuai.com/parseqs/download/parseqs-0.0.2.tgz#9dfe70b2cddac388bde4f35b1f240fa58adbe6c7"
+  dependencies:
+    better-assert "~1.0.0"
+
+parseuri@0.0.2:
+  version "0.0.2"
+  resolved "http://r.npm.sankuai.com/parseuri/download/parseuri-0.0.2.tgz#db41878f2d6964718be870b3140973d8093be156"
+  dependencies:
+    better-assert "~1.0.0"
+
+parseuri@0.0.4:
+  version "0.0.4"
+  resolved "http://r.npm.sankuai.com/parseuri/download/parseuri-0.0.4.tgz#806582a39887e1ea18dd5e2fe0e01902268e9350"
+  dependencies:
+    better-assert "~1.0.0"
+
 parseurl@~1.3.1:
   version "1.3.1"
   resolved "http://r.npm.sankuai.com/parseurl/download/parseurl-1.3.1.tgz#c8ab8c9223ba34888aa64a297b28853bec18da56"
@@ -3782,6 +4062,10 @@ path-type@^1.0.0:
     graceful-fs "^4.1.2"
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
+
+pause@0.0.1:
+  version "0.0.1"
+  resolved "http://r.npm.sankuai.com/pause/download/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
 
 pbkdf2@^3.0.3:
   version "3.0.9"
@@ -4513,6 +4797,10 @@ q@^1.1.2:
   version "1.5.0"
   resolved "http://r.npm.sankuai.com/q/download/q-1.5.0.tgz#dd01bac9d06d30e6f219aecb8253ee9ebdc308f1"
 
+qs@0.6.5:
+  version "0.6.5"
+  resolved "http://r.npm.sankuai.com/qs/download/qs-0.6.5.tgz#294b268e4b0d4250f6dde19b3b8b34935dff14ef"
+
 qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "http://r.npm.sankuai.com/qs/download/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
@@ -4551,9 +4839,17 @@ randombytes@^2.0.0, randombytes@^2.0.1:
   version "2.0.3"
   resolved "http://r.npm.sankuai.com/randombytes/download/randombytes-2.0.3.tgz#674c99760901c3c4112771a31e521dc349cc09ec"
 
+range-parser@0.0.4:
+  version "0.0.4"
+  resolved "http://r.npm.sankuai.com/range-parser/download/range-parser-0.0.4.tgz#c0427ffef51c10acba0782a46c9602e744ff620b"
+
 range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "http://r.npm.sankuai.com/range-parser/download/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
+
+raw-body@0.0.3:
+  version "0.0.3"
+  resolved "http://r.npm.sankuai.com/raw-body/download/raw-body-0.0.3.tgz#0cb3eb22ced1ca607d32dd8fd94a6eb383f3eb8a"
 
 rc-align@2.x:
   version "2.3.4"
@@ -4956,6 +5252,12 @@ read-pkg@^1.0.0:
     normalize-package-data "^2.3.2"
     path-type "^1.0.0"
 
+read@^1.0.7:
+  version "1.0.7"
+  resolved "http://r.npm.sankuai.com/read/download/read-1.0.7.tgz#b3da19bd052431a97671d44a42634adf710b40c4"
+  dependencies:
+    mute-stream "~0.0.4"
+
 readable-stream@1.0:
   version "1.0.34"
   resolved "http://r.npm.sankuai.com/readable-stream/download/readable-stream-1.0.34.tgz#125820e34bc842d2f2aaafafe4c2916ee32c157c"
@@ -4976,6 +5278,15 @@ readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.5, readable
     process-nextick-args "~1.0.6"
     string_decoder "~1.0.0"
     util-deprecate "~1.0.1"
+
+readable-stream@~1.1.8, readable-stream@~1.1.9:
+  version "1.1.14"
+  resolved "http://r.npm.sankuai.com/readable-stream/download/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
+  dependencies:
+    core-util-is "~1.0.0"
+    inherits "~2.0.1"
+    isarray "0.0.1"
+    string_decoder "~0.10.x"
 
 readdirp@^2.0.0:
   version "2.1.0"
@@ -5231,6 +5542,15 @@ select-hose@^2.0.0:
   version "5.3.0"
   resolved "http://r.npm.sankuai.com/semver/download/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
 
+send@0.1.4:
+  version "0.1.4"
+  resolved "http://r.npm.sankuai.com/send/download/send-0.1.4.tgz#be70d8d1be01de61821af13780b50345a4f71abd"
+  dependencies:
+    debug "*"
+    fresh "0.2.0"
+    mime "~1.2.9"
+    range-parser "0.0.4"
+
 send@0.15.1:
   version "0.15.1"
   resolved "http://r.npm.sankuai.com/send/download/send-0.15.1.tgz#8a02354c26e6f5cca700065f5f0cdeba90ec7b5f"
@@ -5348,6 +5668,61 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
+socket.io-adapter@0.3.1:
+  version "0.3.1"
+  resolved "http://r.npm.sankuai.com/socket.io-adapter/download/socket.io-adapter-0.3.1.tgz#df81f970b4df6493902d93e519c7b72755c3a958"
+  dependencies:
+    debug "1.0.2"
+    object-keys "1.0.1"
+    socket.io-parser "2.2.2"
+
+socket.io-client@1.3.3:
+  version "1.3.3"
+  resolved "http://r.npm.sankuai.com/socket.io-client/download/socket.io-client-1.3.3.tgz#ce93693f1a6a33c066569b07321d1600848e30ff"
+  dependencies:
+    backo2 "1.0.2"
+    component-bind "1.0.0"
+    component-emitter "1.1.2"
+    debug "0.7.4"
+    engine.io-client "1.5.1"
+    has-binary "0.1.6"
+    indexof "0.0.1"
+    object-component "0.0.3"
+    parseuri "0.0.2"
+    socket.io-parser "2.2.3"
+    to-array "0.1.3"
+
+socket.io-parser@2.2.2:
+  version "2.2.2"
+  resolved "http://r.npm.sankuai.com/socket.io-parser/download/socket.io-parser-2.2.2.tgz#3d7af6b64497e956b7d9fe775f999716027f9417"
+  dependencies:
+    benchmark "1.0.0"
+    component-emitter "1.1.2"
+    debug "0.7.4"
+    isarray "0.0.1"
+    json3 "3.2.6"
+
+socket.io-parser@2.2.3:
+  version "2.2.3"
+  resolved "http://r.npm.sankuai.com/socket.io-parser/download/socket.io-parser-2.2.3.tgz#6b2c2d6b971a0c0b8510eb83dd2d281a00ee7320"
+  dependencies:
+    benchmark "1.0.0"
+    component-emitter "1.1.2"
+    debug "0.7.4"
+    isarray "0.0.1"
+    json3 "3.2.6"
+
+socket.io@1.3.3:
+  version "1.3.3"
+  resolved "http://r.npm.sankuai.com/socket.io/download/socket.io-1.3.3.tgz#2a1b62bf3a0205488d3a19573b53648262770f2b"
+  dependencies:
+    debug "2.1.0"
+    engine.io "1.5.1"
+    has-binary-data "0.1.3"
+    socket.io-adapter "0.3.1"
+    socket.io-client "1.3.3"
+    socket.io-parser "2.2.3"
+
 sockjs-client@1.1.2:
   version "1.1.2"
   resolved "http://r.npm.sankuai.com/sockjs-client/download/sockjs-client-1.1.2.tgz#f0212a8550e4c9468c8cceaeefd2e3493c033ad5"
@@ -5459,6 +5834,12 @@ stream-browserify@^2.0.1:
   dependencies:
     inherits "~2.0.1"
     readable-stream "^2.0.2"
+
+stream-counter@~0.2.0:
+  version "0.2.0"
+  resolved "http://r.npm.sankuai.com/stream-counter/download/stream-counter-0.2.0.tgz#ded266556319c8b0e222812b9cf3b26fa7d947de"
+  dependencies:
+    readable-stream "~1.1.8"
 
 stream-http@^2.3.1:
   version "2.7.0"
@@ -5629,6 +6010,14 @@ timers-browserify@^2.0.2:
   dependencies:
     setimmediate "^1.0.4"
 
+tinycolor@0.x:
+  version "0.0.1"
+  resolved "http://r.npm.sankuai.com/tinycolor/download/tinycolor-0.0.1.tgz#320b5a52d83abb5978d81a3e887d4aefb15a6164"
+
+to-array@0.1.3:
+  version "0.1.3"
+  resolved "http://r.npm.sankuai.com/to-array/download/to-array-0.1.3.tgz#d45dadc6363417f60f28474fea50ecddbb4f4991"
+
 to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "http://r.npm.sankuai.com/to-arraybuffer/download/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
@@ -5707,6 +6096,14 @@ uid-number@^0.0.6:
   version "0.0.6"
   resolved "http://r.npm.sankuai.com/uid-number/download/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
 
+uid2@0.0.3:
+  version "0.0.3"
+  resolved "http://r.npm.sankuai.com/uid2/download/uid2-0.0.3.tgz#483126e11774df2f71b8b639dcd799c376162b82"
+
+ultron@1.0.x:
+  version "1.0.2"
+  resolved "http://r.npm.sankuai.com/ultron/download/ultron-1.0.2.tgz#ace116ab557cd197386a4e88f4685378c8b2e4fa"
+
 uniq@^1.0.1:
   version "1.0.1"
   resolved "http://r.npm.sankuai.com/uniq/download/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
@@ -5769,6 +6166,10 @@ user-home@^2.0.0:
   resolved "http://r.npm.sankuai.com/user-home/download/user-home-2.0.0.tgz#9c70bfd8169bc1dcbf48604e0f04b8b49cde9e9f"
   dependencies:
     os-homedir "^1.0.0"
+
+utf8@2.0.0:
+  version "2.0.0"
+  resolved "http://r.npm.sankuai.com/utf8/download/utf8-2.0.0.tgz#79ce59eced874809cab9a71fc7102c7d45d4118d"
 
 util-deprecate@~1.0.1:
   version "1.0.2"
@@ -5991,9 +6392,30 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
+ws@0.4.31:
+  version "0.4.31"
+  resolved "http://r.npm.sankuai.com/ws/download/ws-0.4.31.tgz#5a4849e7a9ccd1ed5a81aeb4847c9fedf3122927"
+  dependencies:
+    commander "~0.6.1"
+    nan "~0.3.0"
+    options ">=0.0.5"
+    tinycolor "0.x"
+
+ws@0.5.0:
+  version "0.5.0"
+  resolved "http://r.npm.sankuai.com/ws/download/ws-0.5.0.tgz#b3980391dc4777d83974718aa361e808d86cf9ca"
+  dependencies:
+    nan "1.4.x"
+    options ">=0.0.5"
+    ultron "1.0.x"
+
 xml-char-classes@^1.0.0:
   version "1.0.0"
   resolved "http://r.npm.sankuai.com/xml-char-classes/download/xml-char-classes-1.0.0.tgz#64657848a20ffc5df583a42ad8a277b4512bbc4d"
+
+"xmlhttprequest@https://github.com/rase-/node-XMLHttpRequest/archive/a6b6f2.tar.gz":
+  version "1.5.0"
+  resolved "https://github.com/rase-/node-XMLHttpRequest/archive/a6b6f2.tar.gz#20cafa5caa55f6db6bfaee849d1eb60ee43a5fca"
 
 xtend@^4.0.0:
   version "4.0.1"

@@ -2,9 +2,15 @@
 
 This project is for learning Redux
 
-### command
+### insall
 
-yarn insall
+yarn insall 
+
+### watch ppt
+
+yarn start  
+
+### run code
 
 yarn run dev
 
