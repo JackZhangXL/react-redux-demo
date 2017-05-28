@@ -20,7 +20,6 @@ JackZhang
 
 - Store
 
-
 # <font color=#0099ff>Part 2</font>
 
 - 结合React
@@ -33,7 +32,7 @@ JackZhang
 
 # <font color=#0099ff>Part 1</font>
 
-- <font color=#0099ff>概述</font>
+- <font color=#ff9933>概述</font>
 
 - Action
 
@@ -81,7 +80,7 @@ JackZhang
 
 - <font color=#0099ff>概述</font>
 
-- <font color=#0099ff>Action</font>
+- <font color=#ff9933>Action</font>
 
 - Reducer
 
@@ -91,15 +90,9 @@ JackZhang
 
 # <font color=#0099ff>什么是Action？</font>
 
-描述已发生事件，能携带数据的plain object
+描述已发生事件，能携带数据的<font color=#ff9933>plain object</font>
 
-plain object！
-
-plain object！
-
-plain object！
-
-重要的事情说三遍
+[slide]
 
 # <font color=#0099ff>Action的作用</font>
 
@@ -110,7 +103,7 @@ plain object！
 
 # <font color=#0099ff>典型的Action</font>
 
-必须有type属性，用于告知Reducer发生了什么事
+- 必须有type属性，用于告知Reducer发生了什么事
 
 ``` JavaScript
 // 例1
@@ -133,7 +126,7 @@ plain object！
 
 # <font color=#0099ff>Action Creator</font>
 
-即创建Action的函数
+创建Action的函数
 
 ``` JavaScript
 // 太麻烦，不好维护
@@ -156,7 +149,7 @@ store.dispatch(incrementNum());
 
 ![reduxAction](../img/reduxAction2.jpg)
 
-[例子 originRedux](http://0.0.0.0:9999/originreduxaction.html)
+[例子 Action](http://0.0.0.0:9999/originreduxaction.html)
 
 [slide]
 
@@ -166,7 +159,7 @@ store.dispatch(incrementNum());
 
 - <font color=#0099ff>Action</font>
 
-- <font color=#0099ff>Reducer</font>
+- <font color=#ff9933>Reducer</font>
 
 - Store
 
@@ -174,25 +167,17 @@ store.dispatch(incrementNum());
 
 # <font color=#0099ff>什么是Reducer？</font>
 
-Reducer是个纯函数，执行计算，返回新的state
-
-纯函数！
-
-纯函数！
-
-纯函数！
-
-重要的事情说三遍
+Reducer是个<font color=#ff9933>纯函数</font>，执行计算，返回新的state
 
 [slide]
 
 # <font color=#0099ff>Reducer的作用</font>
 
-返回计算后的新的state
+- 返回计算后的新的state
 
-参数：旧的state和Action
+- 参数：旧的state和Action
 
-返回值：新的state
+- 返回值：新的state
 
 ```JavaScript 
 (state, action) => newState
@@ -220,7 +205,7 @@ return {
 
 ![reduxReducer](../img/reduxReducer1.jpg)
 
-[例子 originRedux](http://0.0.0.0:9999/originreduxreducer.html)
+[例子 Reducer](http://0.0.0.0:9999/originreduxreducer.html)
 
 [slide]
 
@@ -244,7 +229,7 @@ export const createReducer = (initialState, handlers) => {
 
 # <font color=#0099ff>如何切分业务数据？</font>
 
-用combineReducers将多个Reducer合并成一个Reducer
+- 用combineReducers将多个Reducer合并成一个Reducer
 
 ```JavaScript 
 combineReducers({
@@ -252,10 +237,131 @@ combineReducers({
     myReducer2,
 });
 ```
+
 [slide]
 
 目录结构
 
 ![reduxReducer](../img/reduxReducer3.jpg)
 
-[例子 originRedux](http://0.0.0.0:9999/originreduxreducer.html)
+[例子 CombineReducer](http://0.0.0.0:9999/originreduxcombinereducer.html)
+
+[slide]
+
+# <font color=#0099ff>Part 1</font>
+
+- <font color=#0099ff>概述</font>
+
+- <font color=#0099ff>Action</font>
+
+- <font color=#0099ff>Reducer</font>
+
+- <font color=#ff9933>Store</font>
+
+[slide]
+
+# <font color=#0099ff>什么是Store？</font>
+
+由createStore创建，提供getState，dispatch，subscribe方法，内部存储数据state的仓库
+
+[slide]
+
+# <font color=#0099ff>创建Store</font>
+
+``` JavaScript
+createStore(reducer, [initialState], [enhancer])
+```
+
+- 可选参数initialState用于初始化state
+
+- 可选参数enhancer是一个高阶函数，用于增强Store
+
+``` JavaScript
+import { createStore, applyMiddleware, compose } from 'redux';
+import { createLogger } from 'redux-logger';
+
+const logger = createLogger();
+const store = createStore(reducer, compose(
+    applyMiddleware(logger),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+));
+```
+
+[slide]
+
+# <font color=#0099ff>getState()</font>
+
+- 获取Store里存储的state
+
+``` JavaScript
+store.getState().changeNumber.number
+```
+
+[slide]
+
+# <font color=#0099ff>dispatch(action)</font>
+
+- 派发Action，通知Reducer去更新state
+
+``` JavaScript
+store.dispatch(actions.number.incrementNum());
+```
+
+[slide]
+
+# <font color=#0099ff>subscribe(listener)</font>
+
+- 注册回调函数，当state发生变化时，会自动触发回调函数
+
+``` JavaScript
+const update = () => {
+    // 更新 view
+};
+
+store.subscribe(update);
+```
+
+- 该方法的返回值也是一个函数对象，调用后可以取消注册的回调函数
+
+``` JavaScript
+const update = () => {
+    // 更新 view
+};
+
+const cancelUpdate = store.subscribe(update);
+
+<Button onClick={cancelUpdate}>unsubscribe</Button>
+```
+
+[slide]
+
+# <font color=#0099ff>简易版createStore</font>
+
+``` JavaScript
+export const createStore = (reducer) => {
+    let state = {};
+    const listeners = [];
+    const getState = () => state;
+    const dispatch = (action) => {
+        state = reducer(state, action);
+        listeners.forEach((listener) => listener());
+    };
+    const subscribe = (listener) => listeners.push(listener);
+
+    return {
+        getState,
+        dispatch,
+        subscribe,
+    };
+};
+```
+
+[slide]
+
+[例子 Store](http://0.0.0.0:9999/originreduxstore.html)
+
+[slide]
+
+# THE END
+
+### THANK YOU
