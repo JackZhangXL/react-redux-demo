@@ -242,7 +242,7 @@ combineReducers({
 
 目录结构
 
-![reduxReducer](../img/reduxReducer3.jpg)
+![reduxCombineReducer](../img/reduxReducer3.jpg)
 
 [例子 CombineReducer](http://0.0.0.0:9999/originreduxcombinereducer.html)
 
