@@ -267,11 +267,11 @@ export class Provider extends Component {
         children: PropTypes.any,
     }
 
-    static childContextTypes = {
+    static childContextTypes = {    // 强制验证 getChildContext() 返回的值
         store: PropTypes.object,
     }
 
-    getChildContext () {
+    getChildContext () {    // 往 context 里存数据
         return { store: this.props.store, }
     }
 
@@ -281,6 +281,222 @@ export class Provider extends Component {
 }
 ```
 
+[slide]
+
+# <font color=#0099ff>connect高阶组件目的</font>
+
+- 被```<Provider store>```包裹的子组件能访问到context里的store
+
+``` JavaScript
+export class myComponent extends Component {
+    ...
+    static contextTypes = {
+        store: PropTypes.object
+    }
+    ...
+}
+```
+
+- 但这样每个组件里都要写上述代码太麻烦了，用HOC高阶组件来消除重复代码
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件示意图</font>
+
+<img src="../img/reactredux2.jpg" width="750px" height="435px" />
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件实现一</font>
+
+- 第一步：内部封装掉了每个组件都要写的访问context的代码
+
+``` JavaScript
+import React, { Component, PropTypes } from 'react'
+
+export connect = (WrappedComponent) => {
+    class Connect extends Component {
+        static contextTypes = {
+            store: PropTypes.object
+        }
+        
+        render () {
+            return <WrappedComponent />
+        }
+    }
+    
+    return Connect
+}
+```
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件实现二</font>
+
+- 第二步：封装掉subscribe，当store变化，刷新组件的props，触发组件的render方法
+
+``` JavaScript
+export connect = (WrappedComponent) => {
+    class Connect extends Component {
+        ...
+        constructor () {
+            super()
+            this.state = { allProps: {} }
+        }
+        
+        componentWillMount () {
+            const { store } = this.context
+            this._updateProps()
+            store.subscribe(() => this._updateProps())
+        }
+            
+        _updateProps () {
+            this.setState({
+                allProps: {
+                    // TBD
+                    ...this.props
+                }
+            })  
+        }
+        
+        render () {
+            return <WrappedComponent {...this.state.allProps} />
+        }
+    }
+    
+    return Connect
+}
+```
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件实现三</font>
+
+- 第三步：参数mapStateToProps封装掉组件从context中取Store的代码
+
+``` JavaScript
+export const connect = (mapStateToProps) => (WrappedComponent) => {
+    class Connect extends Component {
+        ...
+        _updateProps () {
+            const { store } = this.context
+            let stateProps = mapStateToProps(store.getState(), this.props)
+            this.setState({
+                allProps: {
+                    ...stateProps,
+                    ...this.props
+                }
+            })  
+        }
+        ...
+    }
+    
+    return Connect
+}
+```
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件实现四</font>
+
+- 第四步：参数mapDispatchToProps封装掉组件往context里更新Store的代码
+
+``` JavaScript
+export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
+    class Connect extends Component {
+        ...
+        _updateProps () {
+            const { store } = this.context
+            let stateProps = mapStateToProps(store.getState(), this.props)
+            let dispatchProps = mapDispatchToProps(store.dispatch, this.props)
+            this.setState({
+                allProps: {
+                    ...stateProps,
+                    ...dispatchProps,
+                    ...this.props
+                }
+            })  
+        }
+        ...
+    }
+    
+    return Connect
+}
+```
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件实现完整版</font>
+
+``` JavaScript
+import React, { Component, PropTypes } from 'react'
+
+export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
+    class Connect extends Component {
+        static contextTypes = {
+            store: PropTypes.object
+        }
+        
+        constructor () {
+            super()
+            this.state = { allProps: {} }
+        }
+        
+        componentWillMount () {
+            const { store } = this.context
+            this._updateProps()
+            store.subscribe(() => this._updateProps())
+        }
+            
+         _updateProps () {
+             const { store } = this.context
+             let stateProps = mapStateToProps(store.getState(), this.props)
+             let dispatchProps = mapDispatchToProps(store.dispatch, this.props)
+             this.setState({
+                 allProps: {
+                     ...stateProps,
+                     ...dispatchProps,
+                     ...this.props
+                 }
+             })  
+         }
+        
+        render () {
+            return <WrappedComponent {...this.state.allProps} />
+        }
+    }
+    
+    return Connect
+}
+```
+
+[slide]
+
+# <font color=#0099ff>connect高阶组件示意图（回顾）</font>
+
+<img src="../img/reactredux2.jpg" width="750px" height="435px" />
+
+[slide]
+
+# <font color=#0099ff>总结（回顾）</font>
+
+- react-redux一共就一个组件和一个API：
+
+- ```<Provider store>```用于在入口处包裹需要用到Redux的组件。<font color=#ff9933>本质上是将store放入context里</font>
+
+- conncet方法用于将组件绑定Redux。<font color=#ff9933>本质上是HOC，封装掉了每个组件都要写的板式代码</font>
+
+- <font color=#ff9933>react-redux的高封装性让开发者感知不到context的存在，甚至感知不到Store的getState，subscribe，dispatch的存在。只要connect一下，数据一变就自动刷新React组件，非常方便。</font>
+
+[slide]
+
+# <font color=#0099ff>Part 2</font>
+
+- <font color=#0099ff>结合React</font>
+
+- <font color=#ff9933>中间件</font>
+
+- 异步Action
 
 
 
