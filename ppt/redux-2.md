@@ -12,26 +12,6 @@ JackZhang
 
 # <font color=#0099ff>Part 1</font>
 
-- 概述
-
-- Action
-
-- Reducer
-
-- Store
-
-# <font color=#0099ff>Part 2</font>
-
-- 结合React
-
-- 中间件
-
-- 异步Action
-
-[slide]
-
-# <font color=#0099ff>Part 1 回顾</font>
-
 - <font color=#0099ff>概述</font>
 
 - <font color=#0099ff>Action</font>
@@ -40,45 +20,13 @@ JackZhang
 
 - <font color=#0099ff>Store</font>
 
-[slide]
+# <font color=#0099ff>Part 2</font>
 
-# <font color=#0099ff>三大原则</font>
+- 结合React
 
-- 单一数据源Store
-- 只能通过分派Action来修改state
-- 使用纯函数来执行修改state
+- 中间件
 
-[slide]
-
-# <font color=#0099ff>初始态流转图</font>
-
-![initRedux](../img/initRedux.jpg)
-
-[slide]
-
-# <font color=#0099ff>更新态流转图</font>
-
-![doRedux](../img/doRedux.jpg)
-
-[slide]
-
-# <font color=#0099ff>什么是Action？</font>
-
-描述已发生事件，能携带数据的<font color=#ff9933>plain object</font>
-
-[slide]
-
-# <font color=#0099ff>什么是Reducer？</font>
-
-Reducer是个<font color=#ff9933>纯函数</font>，执行计算，返回新的state
-
-（可用combineReducers将多个Reducer合并成一个Reducer）
-
-[slide]
-
-# <font color=#0099ff>什么是Store？</font>
-
-由createStore创建，提供getState，dispatch，subscribe方法，内部存储数据state的仓库
+- 异步Action
 
 [slide]
 
@@ -197,8 +145,8 @@ const mapDispatchToProps = {
     toggleAlert: action.alert.toggleAlert,
 };
 ```
-- 这样就能在组件中通过```this.props. incrementNum()```方式来dispatch Action出去
-- 但为何不是```dispatch(this.props. incrementNum())```？？
+- 这样就能在组件中通过```this.props.incrementNum()```方式来dispatch Action出去
+- 但为何不是```dispatch(this.props.incrementNum())```？？
 
 [slide]
 
@@ -221,4 +169,118 @@ const mapDispatchToProps2 = (dispatch, ownProps) => {
 };
 ```
 - 解释了上一页的疑问。其实dispatch已经被封装进去了，因此你不必手动写dispatch了
+
+[slide]
+
+# <font color=#0099ff>mergeProps</font>
+
+- 经过conncet的组件的props有3个来源：
+- 1.由mapStateToProps将state映射成的props
+- 2.由mapDispatchToProps将Action creator映射成的props
+- 3.组件自身的props。
+
+mergeProps的参数分别对应了上面3个来源，作用是整合这些props
+
+[slide]
+
+例如过滤掉不需要的props：
+
+``` JavaScript
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    return {
+        ...ownProps,
+        ...stateProps,
+        incrementNum: dispatchProps.incrementNum,	// 只输出incrementNum
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+)(Sample);
+```
+
+[slide]
+
+例如重新组织props：
+
+``` JavaScript
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    return {
+        ...ownProps,
+        state: stateProps,
+        actions: {
+            ...dispatchProps,
+            ...ownProps.actions,
+        },
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps,
+)(Sample);
+```
+
+[slide]
+
+# <font color=#0099ff>总结</font>
+
+- react-redux一共就一个组件和一个API：
+
+- ```<Provider store>```用于在入口处包裹需要用到Redux的组件。
+
+- conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将Action Creator映射成组件props。第三个参数用于整合props。第四个参数有什么心得记得分享给我 :-)
+
+[slide]
+
+# <font color=#0099ff>react-redux的实现原理</font>
+
+- React里有个全局变量context，可用将组件间共享的数据放到contex里
+
+- 优点是：所有组件都可以随时访问到context里共享的值，免去了数据层层传递的麻烦
+
+- 缺点是：全局变量意味着所有人都可以随意修改它，导致不可控。而且和React组件化设计思想不符合
+
+[slide]
+
+# <font color=#0099ff>context能和react-redux完美结合</font>
+
+- Redux设计思想就是单一数据源，集中维护state。（context天生就是唯一数据源）
+
+- Redux设计思想就是不允许随意修改state，这样数据存到context里，也无法随意修改数据
+
+- context成了一个可控的唯一的全局变量，完美！
+
+[slide]
+
+# <font color=#0099ff>Provider组件的实现原理</font>
+
+- 将store保存进context，让子组件可以访问到context里的Store
+
+``` JavaScript
+export class Provider extends Component {
+    static propTypes = {
+        store: PropTypes.object,
+        children: PropTypes.any,
+    }
+
+    static childContextTypes = {
+        store: PropTypes.object,
+    }
+
+    getChildContext () {
+        return { store: this.props.store, }
+    }
+
+    render () {
+        return <div>{this.props.children}</div>
+    }
+}
+```
+
+
+
 
