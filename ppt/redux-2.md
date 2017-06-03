@@ -498,5 +498,166 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
 
 - 异步Action
 
+[slide]
 
+# <font color=#0099ff>中间件的作用</font>
 
+- 在流程中插入功能
+
+- 要满足两个特性：一是扩展功能，二是可以被链式组合。
+
+[slide]
+
+# <font color=#0099ff>需求：打印log</font>
+
+- 需求：自动打印出Action对象和更新后的state，便于调试和追踪数据变化流
+
+``` JavaScript
+console.log('dispatching', action);
+store.dispatch(action);
+console.log('next state', store.getState());
+```
+
+- 我们需要封装打印log的代码，否则让程序员在每个dispatch的地方写log是不可接受的
+
+[slide]
+
+# <font color=#0099ff>打印log的中间件</font>
+
+``` JavaScript
+const preDispatch = store.dispatch;
+store.dispatch = (action) => {
+    console.log('dispatching', action);
+    const result = preDispatch(action);
+    console.log('next state', store.getState());
+    return result;
+};
+```
+
+- 上述就是增强版store.dispatch，这就是Redux的中间件
+
+[slide]
+
+# <font color=#0099ff>log中间件为何只能封装到dispatch里？</font>
+
+- ~~Action~~ （HOW？plain object）
+- ~~Action Creator~~ （WHERE？not updated）
+- ~~Reducer~~ （OK...But not pure）
+- dispatch
+
+- <font color=#ff9933>Redux的中间件本质上就是增强dispatch</font>
+
+[slide]
+
+# <font color=#0099ff>多个中间件</font>
+
+- 例如将上述打印logger的中间件拆成两个
+
+``` JavaScript
+// 只打印出 Action
+export const loggerAction = (store) => {
+    const preDispatch = store.dispatch;
+    store.dispatch = (action) => {
+        console.log('dispatching', action);
+        const result = preDispatch(action);
+        return result;
+    };
+};
+
+// 只打印出 更新后的state
+export const loggerState = (store) => {
+    const preDispatch = store.dispatch;
+    store.dispatch = (action) => {
+        const result = preDispatch(action);
+        console.log('next state', store.getState());
+        return result;
+    };
+};
+
+const store = createStore(reducer);
+loggerAction(store);
+loggerState(store);
+```
+
+[slide]
+
+# <font color=#0099ff>多个中间件就像洋葱圈</font>
+
+![reduxmiddleware](../img/reduxmiddleware2.jpg)
+
+[slide]
+
+# <font color=#0099ff>更优雅的链式调用</font>
+
+- 前面的例子里中间件已经实现了链式调用，前一个中间件增强过的store作为参数传递给下一个中间件。但用起来不够优雅
+
+- Redux提供applyMiddleware方法，允许将所有中间件作为参数传递进去。我们来自己实现这个方法
+
+[slide]
+
+# <font color=#0099ff>applyMiddleware</font>
+
+- 将每个中间件设计成接受一个dispatch参数，并返回加工过的dispatch作为下一个中间件的参数，以方便链式调用
+
+``` JavaScript
+// 只打印出 Action
+export const loggerAction = (store) => (dispatch) => (action) => {
+    console.log('dispatching', action);
+    const result = dispatch(action);
+    return result;
+};
+
+// 只打印出 更新后的state
+export const loggerState = (store) => (dispatch) => (action) => {
+    const result = dispatch(action);
+    console.log('next state', store.getState());
+    return result;
+};
+
+export const applyMiddleware = (store, middlewares) => {
+    let dispatch = store.dispatch;
+    middlewares.forEach((middleware) => {
+        dispatch = middleware(store)(dispatch);
+    });
+
+    return {
+        ...store,
+        dispatch,
+    };
+};
+
+let store = createStore(reducer);
+store = applyMiddleware(store, [loggerAction, loggerState]);
+```
+
+[slide]
+
+# <font color=#0099ff>applyMiddleware官方版</font>
+
+- 官方版的applyMiddleware将第一个参数store也被精简掉了
+
+``` JavaScript
+export const applyMiddleware = (...middlewares) => {
+    return (createStore) => (reducer, preloadedState, enhancer) => {
+        const store = createStore(reducer, preloadedState, enhancer);
+
+        let dispatch = store.dispatch;
+        middlewares.forEach((middleware) => {
+            dispatch = middleware(store)(dispatch);
+        });
+
+        return {
+            ...store,
+            dispatch,
+        };
+    };
+};
+```
+
+[slide]
+
+# <font color=#0099ff>总结</font>
+
+- Redux里的中间件就是增强Store.dispatch功能
+
+- 开发中间件，需要支持链式调用
