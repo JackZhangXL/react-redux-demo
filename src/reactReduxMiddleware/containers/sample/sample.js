@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import action from '../../actions/index';

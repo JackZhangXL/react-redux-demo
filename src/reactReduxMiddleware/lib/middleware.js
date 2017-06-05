@@ -7,7 +7,6 @@
 //     return result;
 // };
 
-
 // Step2
 // // 只打印出 Action
 // export const loggerAction = (store) => {

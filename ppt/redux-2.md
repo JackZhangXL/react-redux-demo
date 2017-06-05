@@ -127,7 +127,7 @@ const mapStateToProps = (state) => {
 # <font color=#0099ff>mapDispatchToProps</font>
 
 - connect方法的第二个参数mapDispatchToProps可以是一个object也可以是一个function（负责输出）
-- 作用是将Action creator绑定到组件的props上，这样组件就能派发Action，更新state了
+- 作用是将```dispatch(action)```绑定到组件的props上，这样组件就能派发Action，更新state了
 
 [slide]
 
@@ -484,7 +484,7 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
 
 - ```<Provider store>```用于在入口处包裹需要用到Redux的组件。<font color=#ff9933>本质上是将store放入context里</font>
 
-- conncet方法用于将组件绑定Redux。<font color=#ff9933>本质上是HOC，封装掉了每个组件都要写的板式代码</font>
+- conncet方法用于将组件绑定Redux。<font color=#ff9933>本质上是HOC，封装掉了每个组件都要写的板式代码，增加了功能。</font>
 
 - <font color=#ff9933>react-redux的高封装性让开发者感知不到context的存在，甚至感知不到Store的getState，subscribe，dispatch的存在。只要connect一下，数据一变就自动刷新React组件，非常方便。</font>
 
@@ -661,3 +661,146 @@ export const applyMiddleware = (...middlewares) => {
 - Redux里的中间件就是增强Store.dispatch功能
 
 - 开发中间件，需要支持链式调用
+
+[slide]
+
+# <font color=#0099ff>Part 2</font>
+
+- <font color=#0099ff>结合React</font>
+
+- <font color=#0099ff>中间件</font>
+
+- <font color=#ff9933>异步Action</font>
+
+[slide]
+
+# <font color=#0099ff>什么是异步Action</font>
+
+- 需要异步操作时（ajax请求，读取文件等），你需要异步Action
+
+- Action本质是plain object，不存在同步异步的概念。所谓异步Action，本质上是<font color=#ff9933>打包一系列Action动作</font>
+
+[slide]
+
+# <font color=#0099ff>redux-thunk中间件</font>
+
+- 例如网络请求数据：
+
+- （1）dispatch出请求服务器数据的Action
+
+- （2）dispatch出结果Action（携带服务器返回了的数据或异常）去更新state
+
+- redux-thunk中间件的作用：执行第一步后，进入等待状态，收到服务器端响应后自动执行第二步。
+
+[slide]
+
+# <font color=#0099ff>redux-thunk实现方式</font>
+
+- 常规的Action creator返回一个Action，但redux-thunk，允许你的Action creator还可以返回一个```function(dispatch, getState)```
+
+``` JavaScript
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+```
+
+[slide]
+
+# <font color=#0099ff>实现网络请求的异步Action</font>
+
+- 第一步dispatch出请求服务器数据的Action
+
+``` JavaScript
+const requestData = () => ({
+    type: constant.REQUEST_DATA,
+});
+```
+
+[slide]
+
+# <font color=#0099ff>实现网络请求的异步Action</font>
+
+- 第二步dispatch出结果Action（携带服务器返回了的数据或异常）去更新state
+
+``` JavaScript
+const receiveData = (data) => ({
+    type: constant.RECEIVE_DATA,
+    data: data.msg,
+});
+```
+
+[slide]
+
+# <font color=#0099ff>实现网络请求的异步Action</font>
+
+- 第三步用redux-thunk将这两步连起来
+
+``` JavaScript
+const doFetchData = () => (dispatch) => {
+    dispatch(requestData());
+    return fetch('./api/fetchSampleData.json')
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveData(json)));
+};
+
+export default {
+    fetchDataAction: () => (dispatch, getState) => {
+        return dispatch(doFetchData());
+    },
+};
+```
+
+
+[slide]
+
+# <font color=#0099ff>实现网络请求的异步Action</font>
+
+- 完整版（加上了请求未完成不允许连续请求，减少服务器开销的逻辑）
+
+``` JavaScript
+import fetch from 'isomorphic-fetch';
+import * as constant from '../configs/action';
+import { sleep } from '../lib/common';
+
+const requestData = () => ({
+    type: constant.REQUEST_DATA,
+});
+
+const receiveData = (data) => ({
+    type: constant.RECEIVE_DATA,
+    data: data.msg,
+});
+
+const doFetchData = () => async(dispatch) => {
+    dispatch(requestData());
+    await sleep(1000);      // Just 4 mock
+    return fetch('./api/fetchSampleData.json')
+        .then((response) => response.json())
+        .then((json) => dispatch(receiveData(json)));
+};
+
+const canFetchData = (state) => {
+    return !state.fetchData.fetching;
+};
+
+export default {
+    fetchDataAction: () => (dispatch, getState) => {
+        if (canFetchData(getState())) {
+            return dispatch(doFetchData());
+        }
+        return Promise.resolve();
+    },
+};
+```
