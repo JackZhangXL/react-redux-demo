@@ -303,7 +303,9 @@ export class myComponent extends Component {
 
 # <font color=#0099ff>connect高阶组件示意图</font>
 
-<img src="../img/reactredux2.jpg" width="750px" height="435px" />
+<div margin="auto">
+    <img src="../img/reactredux2.jpg" width="750px" height="435px" />
+</div>
 
 [slide]
 
@@ -474,7 +476,9 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
 
 # <font color=#0099ff>connect高阶组件示意图（回顾）</font>
 
-<img src="../img/reactredux2.jpg" width="750px" height="435px" />
+<div margin="auto">
+    <img src="../img/reactredux2.jpg" width="750px" height="435px" />
+</div>
 
 [slide]
 
@@ -692,9 +696,13 @@ export const applyMiddleware = (...middlewares) => {
 
 - redux-thunk中间件的作用：执行第一步后，进入等待状态，收到服务器端响应后自动执行第二步。
 
+- <font color=#ff9933>即：redux-thunk允许你延迟至条件满足后，自动dispatch你的action</font>
+
 [slide]
 
 # <font color=#0099ff>redux-thunk实现方式</font>
+
+- thunk在JS里是将多参的异步函数，转换成单参
 
 - 常规的Action creator返回一个Action，但redux-thunk，允许你的Action creator还可以返回一个```function(dispatch, getState)```
 
@@ -756,12 +764,11 @@ const doFetchData = () => (dispatch) => {
 };
 
 export default {
-    fetchDataAction: () => (dispatch, getState) => {
+    fetchDataAction: () => (dispatch) => {
         return dispatch(doFetchData());
     },
 };
 ```
-
 
 [slide]
 
@@ -804,3 +811,41 @@ export default {
     },
 };
 ```
+
+[slide]
+
+# <font color=#0099ff>Part 1</font>
+
+- <font color=#0099ff>概述</font>（三大原则，初始态流转图，更新态流转图）
+
+- <font color=#0099ff>Action</font>（Action，Action Creator）
+
+- <font color=#0099ff>Reducer</font>（纯函数，Reducer Creator，combineReducers）
+
+- <font color=#0099ff>Store</font>（createStore，getState，dispatch，subscribe）
+
+# <font color=#0099ff>Part 2</font>
+
+- <font color=#0099ff>结合React</font>（Provider，connect，用context实现原理，HOC）
+
+- <font color=#0099ff>中间件</font>（洋葱圈式增强dispatch，实现链式调用）
+
+- <font color=#0099ff>异步Action</font>（redux-thunk）
+
+[slide]
+
+# <font color=#0099ff>脚手架目录结构</font>
+
+<div margin="auto">
+    <img src="../img/category.jpeg" width="328px" height="456px" />
+</div>
+
+[slide]
+
+<div margin="auto">
+    <img src="../img/react-redux.jpg" width="750px" height="422px" />
+</div>
+
+# THE END
+
+### THANK YOU
