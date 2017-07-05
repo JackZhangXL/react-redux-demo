@@ -578,7 +578,7 @@ export default connect(
 
 - ```<Provider store>```用于在入口处包裹需要用到Redux的组件。
 
-- conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将Action Creator映射成组件props。第三个参数用于整合props。第四个参数有什么心得记得分享给我 :-)
+- conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将Action Creator映射成组件props。第三个参数用于整合props。第四个参数可以做一些优化，具体见官网。
 
 [slide]
 
