@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
+// import connect from '../../lib/connect';
 import action from '../../actions/index';
 import NumberComponent from '../../components/number/number';
 import AlertComponent from '../../components/alert/alert';

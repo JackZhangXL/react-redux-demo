@@ -12,9 +12,7 @@ export default class Provider extends Component {
     };
 
     getChildContext = () => {
-        return {
-            store: this.props.store,
-        };
+        return { store: this.props.store, };
     };
 
     render() {

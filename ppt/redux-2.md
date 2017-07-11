@@ -67,22 +67,25 @@ JackZhang
 - 将store保存进context，让子组件可以访问到context里的Store
 
 ``` JavaScript
-export class Provider extends Component {
-    static propTypes = {
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+export default class Provider extends Component {
+    static contextTypes = {
         store: PropTypes.object,
         children: PropTypes.any,
-    }
+    };
 
-    static childContextTypes = {    // 强制验证 getChildContext() 返回的值
+    static childContextTypes = {
         store: PropTypes.object,
-    }
+    };
 
-    getChildContext () {    // 往 context 里存数据
-        return { store: this.props.store, }
-    }
+    getChildContext = () => {
+        return { store: this.props.store, };
+    };
 
-    render () {
-        return <div>{this.props.children}</div>
+    render() {
+        return (<div>{this.props.children}</div>);
     }
 }
 ```
@@ -120,21 +123,24 @@ export class myComponent extends Component {
 - 第一步：内部封装掉了每个组件都要写的访问context的代码
 
 ``` JavaScript
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export connect = (WrappedComponent) => {
+const connect = (WrappedComponent) => {
     class Connect extends Component {
         static contextTypes = {
-            store: PropTypes.object
-        }
-        
-        render () {
-            return <WrappedComponent />
+            store: PropTypes.object,
+        };
+
+        render() {
+            return (<WrappedComponent />);
         }
     }
-    
-    return Connect
-}
+
+    return Connect;
+};
+
+export default connect;
 ```
 
 [slide]
@@ -144,36 +150,36 @@ export connect = (WrappedComponent) => {
 - 第二步：封装掉subscribe，当store变化，刷新组件的props，触发组件的render方法
 
 ``` JavaScript
-export connect = (WrappedComponent) => {
+const connect = (WrappedComponent) => {
     class Connect extends Component {
         ...
-        constructor () {
-            super()
+        constructor() {
+            super();
             this.state = { allProps: {} }
         }
-        
-        componentWillMount () {
-            const { store } = this.context
-            this._updateProps()
-            store.subscribe(() => this._updateProps())
+
+        componentWillMount() {
+            const { store } = this.context;
+            this._updateProps();
+            store.subscribe(this._updateProps);
         }
-            
-        _updateProps () {
+
+        _updateProps = () => {
             this.setState({
                 allProps: {
                     // TBD
-                    ...this.props
+                    ...this.props,
                 }
-            })  
-        }
-        
-        render () {
-            return <WrappedComponent {...this.state.allProps} />
+            });
+        };
+
+        render() {
+            return (<WrappedComponent {...this.state.allProps} />);
         }
     }
-    
-    return Connect
-}
+
+    return Connect;
+};
 ```
 
 [slide]
@@ -188,7 +194,7 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
         ...
         _updateProps () {
             const { store } = this.context
-            let stateProps = mapStateToProps(store.getState(), this.props)
+            let stateProps = mapStateToProps(store.getState());
             this.setState({
                 allProps: {
                     ...stateProps,
@@ -215,8 +221,8 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
         ...
         _updateProps () {
             const { store } = this.context
-            let stateProps = mapStateToProps(store.getState(), this.props)
-            let dispatchProps = mapDispatchToProps(store.dispatch, this.props)
+            let stateProps = mapStateToProps(store.getState());
+            let dispatchProps = mapDispatchToProps(store.dispatch);
             this.setState({
                 allProps: {
                     ...stateProps,
@@ -237,45 +243,48 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
 # <font color=#0099ff>connect高阶组件实现完整版</font>
 
 ``` JavaScript
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
+const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
     class Connect extends Component {
         static contextTypes = {
-            store: PropTypes.object
-        }
-        
-        constructor () {
-            super()
+            store: PropTypes.object,
+        };
+
+        constructor() {
+            super();
             this.state = { allProps: {} }
         }
-        
-        componentWillMount () {
-            const { store } = this.context
-            this._updateProps()
-            store.subscribe(() => this._updateProps())
+
+        componentWillMount() {
+            const { store } = this.context;
+            this._updateProps();
+            store.subscribe(this._updateProps);
         }
-            
-         _updateProps () {
-             const { store } = this.context
-             let stateProps = mapStateToProps(store.getState(), this.props)
-             let dispatchProps = mapDispatchToProps(store.dispatch, this.props)
-             this.setState({
-                 allProps: {
-                     ...stateProps,
-                     ...dispatchProps,
-                     ...this.props
-                 }
-             })  
-         }
-        
-        render () {
-            return <WrappedComponent {...this.state.allProps} />
+
+        _updateProps = () => {
+            const { store } = this.context;
+            let stateProps = mapStateToProps(store.getState());
+            let dispatchProps = mapDispatchToProps(store.dispatch);
+            this.setState({
+                allProps: {
+                    ...stateProps,
+                    ...dispatchProps,
+                    ...this.props,
+                }
+            });
+        };
+
+        render() {
+            return (<WrappedComponent {...this.state.allProps} />);
         }
     }
-    
-    return Connect
-}
+
+    return Connect;
+};
+
+export default connect;
 ```
 
 [slide]
