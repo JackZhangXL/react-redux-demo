@@ -337,9 +337,10 @@ export default connect;
 
 # <font color=#0099ff>需求：打印log</font>
 
-- 需求：自动打印出Action对象和更新后的state，便于调试和追踪数据变化流
+- 需求：自动打印出Action对象和更新前后的state，便于调试和追踪数据变化流
 
 ``` JavaScript
+console.log('current state: ', store.getState());
 console.log('dispatching', action);
 store.dispatch(action);
 console.log('next state', store.getState());
@@ -353,11 +354,12 @@ console.log('next state', store.getState());
 
 ``` JavaScript
 const preDispatch = store.dispatch;
+
 store.dispatch = (action) => {
-    console.log('dispatching', action);
-    const result = preDispatch(action);
-    console.log('next state', store.getState());
-    return result;
+    console.log('current state: ', store.getState());
+    console.log('action: ', action);
+    preDispatch(action);
+    console.log('next state: ', store.getState());
 };
 ```
 
@@ -382,22 +384,21 @@ store.dispatch = (action) => {
 
 ``` JavaScript
 // 只打印出 Action
-export const loggerAction = (store) => {
+const loggerAction = (store) => {
     const preDispatch = store.dispatch;
     store.dispatch = (action) => {
-        console.log('dispatching', action);
-        const result = preDispatch(action);
-        return result;
+        console.log('action: ', action);
+        preDispatch(action);
     };
 };
 
 // 只打印出 更新后的state
-export const loggerState = (store) => {
+const loggerState = (store) => {
     const preDispatch = store.dispatch;
     store.dispatch = (action) => {
-        const result = preDispatch(action);
+        console.log('current state: ', store.getState());
+        preDispatch(action);
         console.log('next state', store.getState());
-        return result;
     };
 };
 
@@ -429,16 +430,15 @@ loggerState(store);
 ``` JavaScript
 // 只打印出 Action
 export const loggerAction = (store) => (dispatch) => (action) => {
-    console.log('dispatching', action);
-    const result = dispatch(action);
-    return result;
+    console.log('action: ', action);
+    dispatch(action);
 };
 
 // 只打印出 更新后的state
 export const loggerState = (store) => (dispatch) => (action) => {
-    const result = dispatch(action);
+    console.log('current state: ', store.getState());
+    dispatch(action);
     console.log('next state', store.getState());
-    return result;
 };
 
 export const applyMiddleware = (store, middlewares) => {

@@ -7,6 +7,25 @@ import reducer from '../reducers/index';
 import actions from '../actions/index';
 import './originRedux.pcss';
 
+// // 只打印出 Action
+// const loggerAction = (store) => {
+//     const preDispatch = store.dispatch;
+//     store.dispatch = (action) => {          // eslint-disable-line
+//         console.log('action: ', action);
+//         preDispatch(action);
+//     };
+// };
+//
+// // 只打印出 更新后的state
+// const loggerState = (store) => {
+//     const preDispatch = store.dispatch;
+//     store.dispatch = (action) => {          // eslint-disable-line
+//         console.log('current state: ', store.getState());
+//         preDispatch(action);
+//         console.log('next state', store.getState());
+//     };
+// };
+
 const store = createStore(reducer, compose(
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
@@ -24,6 +43,17 @@ const update = () => {
 };
 
 store.subscribe(update);
+
+// const preDispatch = store.dispatch;
+// store.dispatch = (action) => {
+//     console.log('current state: ', store.getState());
+//     console.log('action: ', action);
+//     preDispatch(action);
+//     console.log('next state: ', store.getState());
+// };
+
+// loggerAction(store);
+// loggerState(store);
 
 export default class Number extends Component {
 

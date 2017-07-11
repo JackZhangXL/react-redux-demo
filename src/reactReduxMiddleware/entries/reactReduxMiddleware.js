@@ -6,11 +6,6 @@ import reducer from '../reducers/index';
 import Sample from '../containers/sample/sample';
 import { loggerAction, loggerState, applyMiddleware } from '../lib/middleware';
 
-// Step2
-// const store = createStore(reducer);
-// loggerAction(store);
-// loggerState(store);
-
 // Step3
 // let store = createStore(reducer);
 // store = applyMiddleware(store, [loggerAction, loggerState]);
