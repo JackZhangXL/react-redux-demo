@@ -44,7 +44,7 @@ JackZhang
 
 # <font color=#0099ff>react-redux的实现原理</font>
 
-- React里有个全局变量context，可用将组件间共享的数据放到contex里
+- React里有个全局变量context，可用将组件间共享的数据放到context里
 
 - 优点是：所有组件都可以随时访问到context里共享的值，免去了数据层层传递的麻烦
 
@@ -301,7 +301,7 @@ export default connect;
 
 - react-redux一共就一个组件和一个API：
 
-- ```<Provider store>```用于在入口处包裹需要用到Redux的组件。<font color=#ff9933>本质上是将store放入context里</font>
+- ```<Provider store>```用于在入口处包裹需要用到React的组件。<font color=#ff9933>本质上是将store放入context里</font>
 
 - conncet方法用于将组件绑定Redux。<font color=#ff9933>本质上是HOC，封装掉了每个组件都要写的板式代码，增加了功能。</font>
 
