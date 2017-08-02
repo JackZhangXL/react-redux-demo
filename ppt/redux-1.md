@@ -576,7 +576,7 @@ export default connect(
 
 - react-redux一共就一个组件和一个API：
 
-- ```<Provider store>```用于在入口处包裹需要用到Redux的组件。
+- ```<Provider store>```用于包裹React组件，被包裹的组件可以使用connect方法。
 
 - conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将Action Creator映射成组件props。第三个参数用于整合props。第四个参数可以做一些优化，具体见官网。
 
