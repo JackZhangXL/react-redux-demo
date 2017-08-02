@@ -196,11 +196,16 @@ Reducer是个<font color=#ff9933>纯函数</font>，执行计算，返回新的s
 # <font color=#0099ff>两个注意点</font>
 
 
-- 首次执行Redux时，需要给state一个初始值
+- 首次执行Redux时，需要给state一个初始值（初始化时，Redux会自动执行一次Reducer，此时state是undefined，我们应该初始化state）
 
 - Reducer每次更新状态时需要一个新的state，因此不要直接修改旧的state参数，而是将旧state参数复制一份，在副本上修改值，返回这个副本
 
 ```JavaScript 
+if (typeof state === 'undefined') {
+    return initialState
+}
+  
+...
 return {
     ...state,
     // 更新state中的值
@@ -526,6 +531,8 @@ const mapDispatchToProps2 = (dispatch, ownProps) => {
 - 3.组件自身的props。
 
 mergeProps的参数分别对应了上面3个来源，作用是整合这些props
+
+（例如过滤掉不需要的props，重新组织props，根据ownProps绑定不同的stateProps和dispatchProps等）
 
 [slide]
 
