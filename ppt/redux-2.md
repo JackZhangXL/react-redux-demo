@@ -515,11 +515,11 @@ export const applyMiddleware = (...middlewares) => {
 
 - （1）dispatch出请求服务器数据的Action
 
-- （2）dispatch出结果Action（携带服务器返回了的数据或异常）去更新state
+- （2）等待服务器响应
 
-- redux-thunk中间件的作用：执行第一步后，进入等待状态，收到服务器端响应后自动执行第二步。
+- （3）dispatch出结果Action（携带服务器返回了的数据或异常）去更新state
 
-- <font color=#ff9933>即：redux-thunk允许你延迟至条件满足后，自动dispatch你的action</font>
+- <font color=#ff9933>redux-thunk中间件的作用：将这三步封装到Action Creator里，以实现打包一系列Action动作的目的</font>
 
 [slide]
 
