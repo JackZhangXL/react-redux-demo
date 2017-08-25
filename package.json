@@ -1,7 +1,7 @@
 {
   "name": "react-redux",
   "version": "1.0.0",
-  "description": "react redex",
+  "description": "react redex demo",
   "main": "./src/index.js",
   "scripts": {
     "lint": "eslint ./src",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JackZhangXL/react-redux.git"
+    "url": "git+https://github.com/JackZhangXL/react-redux-demo.git"
   },
   "keywords": [
     "react",
@@ -19,9 +19,9 @@
   "author": "JackZhang",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JackZhangXL/react-redux/issues"
+    "url": "https://github.com/JackZhangXL/react-redux-demo/issues"
   },
-  "homepage": "https://github.com/JackZhangXL/react-redux#readme",
+  "homepage": "https://github.com/JackZhangXL/react-redux-demo#readme",
   "devDependencies": {
     "antd": "^2.10.0",
     "babel-core": "^6.24.1",

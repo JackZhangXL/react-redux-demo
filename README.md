@@ -1,4 +1,4 @@
-# react-redux
+# react-redux-demo
 
 This project is for learning Redux
 
