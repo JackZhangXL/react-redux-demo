@@ -46,7 +46,33 @@ JackZhang
 
 [slide]
 
+# <font color=#0099ff>Why Flux？</font>
+
+传统 MVC 框架
+
+![initRedux](../img/mvc.jpeg)
+
+[slide]
+
+# <font color=#0099ff>Why Flux？</font>
+
+最终几乎肯定失控
+
+![initRedux](../img/mvc2.jpeg)
+
+[slide]
+
+# <font color=#0099ff>Why Flux？</font>
+
+单向数据流（禁止 view 直接对话 modal）
+
+![initRedux](../img/mvc3.png)
+
+[slide]
+
 # <font color=#0099ff>Why Redux？</font>
+
+Redux 是 Flux 的一种实现
 
 替你管理难以维护的state
 
