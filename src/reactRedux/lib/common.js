@@ -23,3 +23,7 @@ export const createStore = (reducer) => {
         subscribe,
     };
 };
+
+export const bindActionCreators = (actionCreators, dispatch) => {
+    return () => dispatch(actionCreators());
+};

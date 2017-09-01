@@ -279,6 +279,29 @@ combineReducers({
 
 [slide]
 
+# <font color=#0099ff>源代码</font>
+
+```JavaScript 
+export const combineReducers = (reducers) => {
+    const finalReducerKeys = Object.keys(reducers);
+    return (state = {}, action) => {
+        let hasChanged = false;
+        const nextState = {};
+        for (let i = 0; i < finalReducerKeys.length; i++) {
+            const key = finalReducerKeys[i];
+            const reducer = reducers[key];
+            const previousStateForKey = state[key];
+            const nextStateForKey = reducer(previousStateForKey, action);
+            nextState[key] = nextStateForKey;
+            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+        }
+        return hasChanged ? nextState : state;
+    };
+};
+```
+
+[slide]
+
 目录结构
 
 ![reduxCombineReducer](../img/reduxReducer3.jpg)
