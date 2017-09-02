@@ -1,32 +1,16 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+// import { createStore } from 'redux';
+// import { middleware1, middleware2, applyMiddleware, compose } from '../lib/common';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
 import reducer from '../reducers/index';
 import actions from '../actions/index';
 import './originRedux.pcss';
 
-// // 只打印出 Action
-// const loggerAction = (store) => {
-//     const preDispatch = store.dispatch;
-//     store.dispatch = (action) => {          // eslint-disable-line
-//         console.log('action: ', action);
-//         preDispatch(action);
-//     };
-// };
-//
-// // 只打印出 更新后的state
-// const loggerState = (store) => {
-//     const preDispatch = store.dispatch;
-//     store.dispatch = (action) => {          // eslint-disable-line
-//         console.log('current state: ', store.getState());
-//         preDispatch(action);
-//         console.log('next state', store.getState());
-//     };
-// };
-
-const store = createStore(reducer, compose(
+let store = createStore(reducer, compose(
+    // applyMiddleware(middleware1, middleware2),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
 
@@ -43,17 +27,9 @@ const update = () => {
 };
 
 store.subscribe(update);
-
-// const preDispatch = store.dispatch;
-// store.dispatch = (action) => {
-//     console.log('current state: ', store.getState());
-//     console.log('action: ', action);
-//     preDispatch(action);
-//     console.log('next state: ', store.getState());
-// };
-
-// loggerAction(store);
-// loggerState(store);
+// store.dispatch = middleware1(store);
+// store.dispatch = middleware2(store);
+// store.dispatch = applyMiddleware(middleware1, middleware2)(store);
 
 export default class Number extends Component {
 

@@ -24,3 +24,32 @@ export const combineReducers = (reducers) => {
     };
 };
 
+export const middleware1 = (store) => (dispatch) => (action) => {
+    console.log('first middleware');
+    dispatch(action);
+};
+
+export const middleware2 = (store) => (dispatch) => (action) => {
+    console.log('second middleware');
+    dispatch(action);
+};
+
+export const applyMiddleware = (...middlewares) => {
+    return (createStore) => (reducer, initialState, enhancer) => {
+        const store = createStore(reducer, initialState, enhancer);
+        let dispatch = store.dispatch;
+
+        middlewares.forEach((middleware) => {
+            dispatch = middleware(store)(dispatch);
+        });
+
+        return {
+            ...store,
+            dispatch,
+        };
+    };
+};
+
+export const compose = (...funcs) => {
+    return funcs.reduce((a, b) => (...args) => a(b(...args)))
+};
