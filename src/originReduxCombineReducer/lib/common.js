@@ -51,5 +51,5 @@ export const applyMiddleware = (...middlewares) => {
 };
 
 export const compose = (...funcs) => {
-    return funcs.reduce((a, b) => (...args) => a(b(...args)))
+    return funcs.reduce((a, b) => (...args) => a(b(...args)));
 };

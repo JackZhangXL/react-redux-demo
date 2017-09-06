@@ -9,7 +9,7 @@ import reducer from '../reducers/index';
 import actions from '../actions/index';
 import './originRedux.pcss';
 
-let store = createStore(reducer, compose(
+const store = createStore(reducer, compose(
     // applyMiddleware(middleware1, middleware2),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
