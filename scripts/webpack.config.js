@@ -41,7 +41,7 @@ const config = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: ['babel-loader', 'react-hot-loader/webpack'],
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -96,8 +96,15 @@ entryFileNameList.forEach((item) => {
     } = config;
 
     let fileName = path.basename(item, '.js');
-    entry[fileName] = `${item}`;
-console.log('entry[item]: ', entry[fileName]);
+    entry[fileName] = [`${item}`];
+    console.log('entry[item]: ', entry[fileName]);
+
+    entry[fileName].unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
+    entry[fileName].unshift(`webpack/hot/log-apply-result`);
+
+    // hot reload
+    entry[fileName].unshift(`webpack/hot/only-dev-server`);
+    entry[fileName].unshift(`react-hot-loader/patch`);
 
     const htmlName = fileName.toLowerCase();
     plugins.push(

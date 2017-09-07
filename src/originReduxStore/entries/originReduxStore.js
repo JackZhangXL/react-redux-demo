@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 // import { applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -71,8 +70,3 @@ export default class Number extends Component {
         );
     }
 }
-
-render(
-    <Number />,
-    document.getElementById('app'),
-);

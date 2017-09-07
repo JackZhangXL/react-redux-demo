@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 // import { createStore } from 'redux';
 // import { middleware1, middleware2, applyMiddleware, compose } from '../lib/common';
@@ -67,8 +66,3 @@ export default class Number extends Component {
         );
     }
 }
-
-render(
-    <Number />,
-    document.getElementById('app'),
-);

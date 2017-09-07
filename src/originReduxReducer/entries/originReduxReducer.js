@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
@@ -44,8 +43,3 @@ export default class Number extends Component {
         );
     }
 }
-
-render(
-    <Number />,
-    document.getElementById('app'),
-);

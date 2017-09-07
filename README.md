@@ -18,29 +18,29 @@ yarn run dev
 
 all redux in single JS file
  
-http://0.0.0.0:9999/originredux.html
+http://0.0.0.0:9999/redux.html
 
 ### Chapter 2 originReduxAction
 
 separate action from others
 
-http://0.0.0.0:9999/originreduxaction.html
+http://0.0.0.0:9999/reduxaction.html
 
 ### Chapter 3 originReduxReducer & originReduxCombineReducer
 
 separate reducer from others
 
-http://0.0.0.0:9999/originreduxreducer.html
+http://0.0.0.0:9999/reduxreducer.html
 
 learn combineReducers
 
-http://0.0.0.0:9999/originreduxcombinereducer.html
+http://0.0.0.0:9999/reduxcombinereducer.html
 
 ### Chapter 4 originReduxStore
 
 learn createStore compose
 
-http://0.0.0.0:9999/originreduxstore.html
+http://0.0.0.0:9999/reduxstore.html
 
 ### Chapter 5 reactRedux
 
