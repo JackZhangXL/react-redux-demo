@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Demo from './originReduxCombineReducer';
+import Demo from '../originReduxCombineReducer';
 
 render(
     <AppContainer>
@@ -11,8 +11,8 @@ render(
 );
 
 if (module.hot) {
-    module.hot.accept('./originReduxCombineReducer', () => {
-        const newDemo = require('./originReduxCombineReducer').default;
+    module.hot.accept('../originReduxCombineReducer', () => {
+        const newDemo = require('../originReduxCombineReducer').default;
         render(
             <AppContainer>
                 {React.createElement(newDemo)}

@@ -4,8 +4,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
-import reducer from '../reducers/index';
-import actions from '../actions/index';
+import reducer from './reducers/index';
+import actions from './actions/index';
 // import { createStore } from '../lib/common';
 import './originRedux.pcss';
 

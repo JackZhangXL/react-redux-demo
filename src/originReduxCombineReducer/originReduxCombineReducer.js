@@ -4,8 +4,8 @@ import { createStore, compose, applyMiddleware } from 'redux';
 // import { middleware1, middleware2, applyMiddleware, compose } from '../lib/common';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
-import reducer from '../reducers/index';
-import actions from '../actions/index';
+import reducer from './reducers/index';
+import actions from './actions/index';
 import './originRedux.pcss';
 
 const store = createStore(reducer, compose(

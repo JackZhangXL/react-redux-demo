@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Demo from './originReduxStore';
+import Demo from '../originReduxStore';
 
 render(
     <AppContainer>
@@ -11,8 +11,8 @@ render(
 );
 
 if (module.hot) {
-    module.hot.accept('./originReduxStore', () => {
-        const newDemo = require('./originReduxStore').default;
+    module.hot.accept('../originReduxStore', () => {
+        const newDemo = require('../originReduxStore').default;
         render(
             <AppContainer>
                 {React.createElement(newDemo)}

@@ -2,15 +2,32 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import { Button } from 'antd';
 import 'antd/dist/antd.css';
-import reducer from '../reducers/number';
-import * as actions from '../actions/number';
+import * as constant from './configs/action';
+import * as actions from './actions/number';
 import './originRedux.pcss';
+
+const reducer = (state, action) => {
+    if (typeof state === 'undefined') {
+        return 0;
+    }
+
+    switch (action.type) {
+        case constant.INCREMENT:
+            return state + 1;
+        case constant.DECREMENT:
+            return state - 1;
+        case constant.CLEAR_NUM:
+            return 0;
+        default:
+            return state;
+    }
+};
 
 const store = createStore(reducer);
 
 const update = () => {
     const valueEl = document.getElementsByClassName('numValue');
-    valueEl[0].innerHTML = store.getState().number;
+    valueEl[0].innerHTML = store.getState().toString();
 };
 
 store.subscribe(update);
@@ -32,7 +49,7 @@ export default class Number extends Component {
     render() {
         return (
             <div className="wrap">
-                <h3>origin Redux reducer</h3>
+                <h3>origin Redux action</h3>
                 Current Number: <span className="numValue">0</span>
                 <div>
                     <Button size="large" className="numBtn" onClick={this.addNum}>+</Button>
