@@ -10,14 +10,14 @@ render(
     document.getElementById('app'),
 );
 
-if (module.hot) {
-    module.hot.accept('../originReduxCombineReducer', () => {
-        const newDemo = require('../originReduxCombineReducer').default;
-        render(
-            <AppContainer>
-                {React.createElement(newDemo)}
-            </AppContainer>,
-            document.getElementById('app'),
-        );
-    });
-}
+// if (module.hot) {
+//     module.hot.accept('../originReduxCombineReducer', () => {
+//         const newDemo = require('../originReduxCombineReducer').default;
+//         render(
+//             <AppContainer>
+//                 {React.createElement(newDemo)}
+//             </AppContainer>,
+//             document.getElementById('app'),
+//         );
+//     });
+// }
