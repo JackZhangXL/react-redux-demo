@@ -22,17 +22,17 @@ render(
     </AppContainer>,
     document.getElementById('app'),
 );
-//
-// if (module.hot) {
-//     module.hot.accept('../containers/sample/sample', () => {
-//         const newDemo = require('../containers/sample/sample').default;
-//         render(
-//             <AppContainer>
-//                 <Provider store={store}>
-//                     {React.createElement(newDemo)}
-//                 </Provider>
-//             </AppContainer>,
-//             document.getElementById('app'),
-//         );
-//     });
-// }
+
+if (module.hot) {
+    module.hot.accept('../containers/sample/sample', () => {
+        const newDemo = require('../containers/sample/sample').default;
+        render(
+            <AppContainer>
+                <Provider store={store}>
+                    {React.createElement(newDemo)}
+                </Provider>
+            </AppContainer>,
+            document.getElementById('app'),
+        );
+    });
+}
