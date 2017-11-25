@@ -64,7 +64,7 @@ JackZhang
 
 # <font color=#0099ff>Why Flux？</font>
 
-单向数据流（禁止 view 直接对话 modal）
+单向数据流（禁止 view 直接对话 model）
 
 ![initRedux](../img/mvc3.png)
 
@@ -74,17 +74,17 @@ JackZhang
 
 Redux 是 Flux 的一种实现
 
-替你管理难以维护的state
+替你管理难以维护的 state
 
-让state的变化可控
+让 state 的变化可控
 
 [slide]
 
 # <font color=#0099ff>三大原则</font>
 
-- 单一数据源Store
-- 只能通过分派Action来修改state
-- 使用纯函数来执行修改state
+- 单一数据源 Store
+- 只能通过 Dispatch Action 来修改 state
+- 使用 Reducer 纯函数来执行修改 state
 
 [slide]
 
@@ -102,7 +102,7 @@ Redux 是 Flux 的一种实现
 
 ![initRedux](../img/initRedux.jpg)
 
-[例子 originRedux](http://0.0.0.0:9999/originredux.html)
+[例子 originRedux](http://0.0.0.0:9999/redux.html)
 
 [slide]
 
@@ -154,6 +154,8 @@ Redux 是 Flux 的一种实现
 }
 ```
 
+[参考 Flux 标准](https://github.com/acdlite/flux-standard-action)
+
 [slide]
 
 # <font color=#0099ff>Action Creator</font>
@@ -181,7 +183,7 @@ store.dispatch(incrementNum());
 
 ![reduxAction](../img/reduxAction2.jpg)
 
-[例子 Action](http://0.0.0.0:9999/originreduxaction.html)
+[例子 Action](http://0.0.0.0:9999/reduxaction.html)
 
 [slide]
 
@@ -244,7 +246,7 @@ return {
 
 ![reduxReducer](../img/reduxReducer1.jpg)
 
-[例子 Reducer](http://0.0.0.0:9999/originreduxreducer.html)
+[例子 Reducer](http://0.0.0.0:9999/reduxreducer.html)
 
 [slide]
 
@@ -283,19 +285,18 @@ combineReducers({
 
 ```JavaScript 
 export const combineReducers = (reducers) => {
-    const finalReducerKeys = Object.keys(reducers);
+    const reducerKeys = Object.keys(reducers);
     return (state = {}, action) => {
-        let hasChanged = false;
         const nextState = {};
-        for (let i = 0; i < finalReducerKeys.length; i++) {
-            const key = finalReducerKeys[i];
+        for (let i = 0; i < reducerKeys.length; i++) {
+            const key = reducerKeys[i];
             const reducer = reducers[key];
-            const previousStateForKey = state[key];
-            const nextStateForKey = reducer(previousStateForKey, action);
-            nextState[key] = nextStateForKey;
-            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+            nextState[key] = reducer(state[key], action);
         }
-        return hasChanged ? nextState : state;
+        return {
+            ...state,
+            ...nextState,
+        };
     };
 };
 ```
@@ -306,7 +307,7 @@ export const combineReducers = (reducers) => {
 
 ![reduxCombineReducer](../img/reduxReducer3.jpg)
 
-[例子 CombineReducer](http://0.0.0.0:9999/originreduxcombinereducer.html)
+[例子 CombineReducer](http://0.0.0.0:9999/reduxcombinereducer.html)
 
 [slide]
 
@@ -422,7 +423,7 @@ export const createStore = (reducer) => {
 
 [slide]
 
-[例子 Store](http://0.0.0.0:9999/originreduxstore.html)
+[例子 Store](http://0.0.0.0:9999/reduxstore.html)
 
 [slide]
 
