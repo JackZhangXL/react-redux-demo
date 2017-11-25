@@ -150,13 +150,13 @@ const connect = (WrappedComponent) => {
         ...
         constructor() {
             super();
-            this.state = { allProps: {} }
+            this.state = { allProps: {} };
         }
 
         componentWillMount() {
             const { store } = this.context;
-            this._updateProps();
-            store.subscribe(this._updateProps);
+            this.updateProps();
+            store.subscribe(this.updateProps);
         }
 
         _updateProps = () => {
@@ -164,7 +164,7 @@ const connect = (WrappedComponent) => {
                 allProps: {
                     // TBD
                     ...this.props,
-                }
+                },
             });
         };
 
@@ -189,12 +189,12 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
         ...
         _updateProps () {
             const { store } = this.context
-            let stateProps = mapStateToProps(store.getState());
+            const stateProps = mapStateToProps(store.getState());
             this.setState({
                 allProps: {
                     ...stateProps,
                     ...this.props
-                }
+                },
             })  
         }
         ...
@@ -216,14 +216,14 @@ export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponen
         ...
         _updateProps () {
             const { store } = this.context
-            let stateProps = mapStateToProps(store.getState());
-            let dispatchProps = mapDispatchToProps(store.dispatch);
+            const stateProps = mapStateToProps(store.getState());
+            const dispatchProps = mapDispatchToProps(store.dispatch);
             this.setState({
                 allProps: {
                     ...stateProps,
                     ...dispatchProps,
                     ...this.props
-                }
+                },
             })  
         }
         ...
@@ -249,25 +249,25 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
 
         constructor() {
             super();
-            this.state = { allProps: {} }
+            this.state = { allProps: {} };
         }
 
         componentWillMount() {
             const { store } = this.context;
-            this._updateProps();
-            store.subscribe(this._updateProps);
+            this.updateProps();
+            store.subscribe(this.updateProps);
         }
 
-        _updateProps = () => {
+        updateProps = () => {
             const { store } = this.context;
-            let stateProps = mapStateToProps(store.getState());
-            let dispatchProps = mapDispatchToProps(store.dispatch);
+            const stateProps = mapStateToProps(store.getState());
+            const dispatchProps = mapDispatchToProps(store.dispatch);
             this.setState({
                 allProps: {
                     ...stateProps,
                     ...dispatchProps,
                     ...this.props,
-                }
+                },
             });
         };
 

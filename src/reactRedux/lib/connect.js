@@ -9,25 +9,38 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
 
         constructor() {
             super();
-            this.state = { allProps: {} }
+            this.state = { allProps: {} };
+            // this.finalDispatchToProps = {};
         }
 
         componentWillMount() {
             const { store } = this.context;
-            this._updateProps();
-            store.subscribe(this._updateProps);
+            // const tempDispatchToProps = {};
+            // if (typeof mapDispatchToProps === 'object') {
+            //     const keys = Object.keys(mapDispatchToProps);
+            //     keys.forEach((key) => {
+            //         const actionCreator = mapDispatchToProps[key];
+            //         tempDispatchToProps[key] = () => store.dispatch(actionCreator());
+            //     });
+            //     this.finalDispatchToProps = () => tempDispatchToProps;
+            // } else {
+            //     this.finalDispatchToProps = () => mapDispatchToProps(store.dispatch);
+            // }
+            this.updateProps();
+            store.subscribe(this.updateProps);
         }
 
-        _updateProps = () => {
+        updateProps = () => {
             const { store } = this.context;
-            let stateProps = mapStateToProps(store.getState());
-            let dispatchProps = mapDispatchToProps(store.dispatch);
+            const stateProps = mapStateToProps(store.getState());
+            const dispatchProps = mapDispatchToProps(store.dispatch);
+            // const dispatchProps = this.finalDispatchToProps();
             this.setState({
                 allProps: {
                     ...stateProps,
                     ...dispatchProps,
                     ...this.props,
-                }
+                },
             });
         };
 

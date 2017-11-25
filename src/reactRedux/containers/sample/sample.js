@@ -58,14 +58,16 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = {
-    incrementNum: action.number.incrementNum,
-    decrementNum: action.number.decrementNum,
-    clearNum: action.number.clearNum,
-    toggleAlert: action.alert.toggleAlert,
-};
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         incrementNum: () => dispatch(action.number.incrementNum()),
+//         decrementNum: () => dispatch(action.number.decrementNum()),
+//         clearNum: () => dispatch(action.number.clearNum()),
+//         toggleAlert: () => dispatch(action.alert.toggleAlert()),
+//     };
+// };
 
-// const mapDispatchToProps = (dispatch, ownProps) => {
+// const mapDispatchToProps = (dispatch) => {
 //     return {
 //         incrementNum: bindActionCreators(action.number.incrementNum, dispatch),
 //         decrementNum: bindActionCreators(action.number.decrementNum, dispatch),
@@ -73,6 +75,13 @@ const mapDispatchToProps = {
 //         toggleAlert: bindActionCreators(action.alert.toggleAlert, dispatch),
 //     };
 // };
+
+const mapDispatchToProps = {
+    incrementNum: action.number.incrementNum,
+    decrementNum: action.number.decrementNum,
+    clearNum: action.number.clearNum,
+    toggleAlert: action.alert.toggleAlert,
+};
 
 export default connect(
     mapStateToProps,
