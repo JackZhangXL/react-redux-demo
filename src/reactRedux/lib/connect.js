@@ -9,7 +9,7 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
 
         constructor() {
             super();
-            this.state = { allProps: {} };
+            this.state = { finalProps: {} };
             // this.finalDispatchToProps = {};
         }
 
@@ -35,17 +35,21 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
             const stateProps = mapStateToProps(store.getState());
             const dispatchProps = mapDispatchToProps(store.dispatch);
             // const dispatchProps = this.finalDispatchToProps();
+
+            const finalProps = {
+                ...stateProps,
+                ...dispatchProps,
+                ...this.props,
+            };
+
             this.setState({
-                allProps: {
-                    ...stateProps,
-                    ...dispatchProps,
-                    ...this.props,
-                },
+                finalProps,
             });
         };
 
         render() {
-            return (<WrappedComponent {...this.state.allProps} />);
+            const { finalProps } = this.state;
+            return (<WrappedComponent {...finalProps} />);
         }
     }
 

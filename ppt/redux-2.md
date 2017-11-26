@@ -142,34 +142,16 @@ export default connect;
 
 # <font color=#0099ff>connect高阶组件实现二</font>
 
-- 第二步：封装掉subscribe，当store变化，刷新组件的props，触发组件的render方法
+- 第二步：参数mapStateToProps封装掉组件从context中取Store的代码
 
 ``` JavaScript
-const connect = (WrappedComponent) => {
+const connect = (mapStateToProps) => (WrappedComponent) => {
     class Connect extends Component {
         ...
-        constructor() {
-            super();
-            this.state = { allProps: {} };
-        }
-
-        componentWillMount() {
-            const { store } = this.context;
-            this.updateProps();
-            store.subscribe(this.updateProps);
-        }
-
-        _updateProps = () => {
-            this.setState({
-                allProps: {
-                    // TBD
-                    ...this.props,
-                },
-            });
-        };
-
         render() {
-            return (<WrappedComponent {...this.state.allProps} />);
+            const { store } = this.context;
+            const stateProps = mapStateToProps(store.getState());
+            return (<WrappedComponent {...stateProps} />);
         }
     }
 
@@ -181,23 +163,24 @@ const connect = (WrappedComponent) => {
 
 # <font color=#0099ff>connect高阶组件实现三</font>
 
-- 第三步：参数mapStateToProps封装掉组件从context中取Store的代码
+- 第三步：参数mapDispatchToProps封装掉组件往context里更新Store的代码
 
 ``` JavaScript
-export const connect = (mapStateToProps) => (WrappedComponent) => {
+export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
     class Connect extends Component {
         ...
-        _updateProps () {
-            const { store } = this.context
+        render() {
+            const { store } = this.context;
             const stateProps = mapStateToProps(store.getState());
-            this.setState({
-                allProps: {
-                    ...stateProps,
-                    ...this.props
-                },
-            })  
+            const dispatchProps = mapDispatchToProps(store.dispatch);
+
+            const finalProps = {
+                ...stateProps,
+                ...dispatchProps,
+            };
+
+            return (<WrappedComponent {...finalProps} />);
         }
-        ...
     }
     
     return Connect
@@ -208,24 +191,38 @@ export const connect = (mapStateToProps) => (WrappedComponent) => {
 
 # <font color=#0099ff>connect高阶组件实现四</font>
 
-- 第四步：参数mapDispatchToProps封装掉组件往context里更新Store的代码
+- 第四步：封装掉subscribe，当store变化，刷新组件的props，触发组件的render方法
 
 ``` JavaScript
 export const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
     class Connect extends Component {
         ...
-        _updateProps () {
-            const { store } = this.context
+        constructor() {
+            super();
+            this.state = { finalProps: {} };
+        }
+        
+        componentWillMount() {
+            const { store } = this.context;
+            this.updateProps();
+            store.subscribe(this.updateProps);
+        }
+        
+        updateProps = () => {
+            const { store } = this.context;
             const stateProps = mapStateToProps(store.getState());
             const dispatchProps = mapDispatchToProps(store.dispatch);
+        
+            const finalProps = {
+                ...stateProps,
+                ...dispatchProps,
+                ...this.props,
+            };
+        
             this.setState({
-                allProps: {
-                    ...stateProps,
-                    ...dispatchProps,
-                    ...this.props
-                },
-            })  
-        }
+                finalProps,
+            });
+        };
         ...
     }
     
@@ -249,7 +246,7 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
 
         constructor() {
             super();
-            this.state = { allProps: {} };
+            this.state = { finalProps: {} };
         }
 
         componentWillMount() {
@@ -262,17 +259,21 @@ const connect = (mapStateToProps, mapDispatchToProps) => (WrappedComponent) => {
             const { store } = this.context;
             const stateProps = mapStateToProps(store.getState());
             const dispatchProps = mapDispatchToProps(store.dispatch);
+
+            const finalProps = {
+                ...stateProps,
+                ...dispatchProps,
+                ...this.props,
+           };
+
             this.setState({
-                allProps: {
-                    ...stateProps,
-                    ...dispatchProps,
-                    ...this.props,
-                },
+                finalProps,
             });
         };
 
         render() {
-            return (<WrappedComponent {...this.state.allProps} />);
+            const { finalProps } = this.state;
+            return (<WrappedComponent {...finalProps} />);
         }
     }
 
