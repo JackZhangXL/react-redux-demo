@@ -5,15 +5,36 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../reducers/index';
 import Sample from '../containers/sample/sample';
-import { loggerAction, loggerState, applyMiddleware } from '../lib/middleware';
+import {
+    middleware1,
+    middleware2,
+    loggerAction,
+    loggerState,
+    applyMiddleware,
+    applyMiddlewarePlus,
+    compose,
+} from '../lib/middleware';
 
-// Step3
+// Step0 - 手写 console.log
+// const store = createStore(reducer);
+
+// Step1 - 自定义中间件
+// const store = createStore(reducer);
+// store.dispatch = middleware1(store.dispatch);
+// store.dispatch = middleware2(store.dispatch);
+
+// Step2 - 用 applyMiddleware 将中间件更优雅地链接起来
 // let store = createStore(reducer);
 // store = applyMiddleware(store, [loggerAction, loggerState]);
 
-// final Step
-const createStoreWithMiddleware = applyMiddleware(loggerAction, loggerState)(createStore);
-const store = createStoreWithMiddleware(reducer);
+// Step3 - 更优雅的 applyMiddleware
+// const store = applyMiddlewarePlus(loggerAction, loggerState)(createStore)(reducer);
+
+// Step4 - 增加 compose 绑定插件功能
+const store = createStore(reducer, compose(
+    applyMiddlewarePlus(loggerAction, loggerState),
+    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+));
 
 render(
     <AppContainer>

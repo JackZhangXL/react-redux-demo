@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { createStore, compose, applyMiddleware } from 'redux';
-// import { createStore } from 'redux';
-// import { middleware1, middleware2, applyMiddleware, compose } from '../lib/common';
+import { createStore, compose } from 'redux';
 import { Button, Alert } from 'antd';
 import 'antd/dist/antd.css';
 import reducer from './reducers/index';
@@ -9,7 +7,6 @@ import actions from './actions/index';
 import './originRedux.pcss';
 
 const store = createStore(reducer, compose(
-    // applyMiddleware(middleware1, middleware2),
     window.devToolsExtension ? window.devToolsExtension() : (f) => f,
 ));
 
@@ -26,9 +23,6 @@ const update = () => {
 };
 
 store.subscribe(update);
-// store.dispatch = middleware1(store);
-// store.dispatch = middleware2(store);
-// store.dispatch = applyMiddleware(middleware1, middleware2)(store);
 
 export default class Number extends Component {
 

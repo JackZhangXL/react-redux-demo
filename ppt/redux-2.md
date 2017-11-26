@@ -380,27 +380,25 @@ store.dispatch = (action) => {
 
 ``` JavaScript
 // 只打印出 Action
-const loggerAction = (store) => {
-    const preDispatch = store.dispatch;
-    store.dispatch = (action) => {
-        console.log('action: ', action);
-        preDispatch(action);
+export const loggerAction = (store) => {
+    return (dispatch) => {
+        return (action) => {
+            console.log('action: ', action);
+            dispatch(action);
+        };
     };
 };
 
 // 只打印出 更新后的state
-const loggerState = (store) => {
-    const preDispatch = store.dispatch;
-    store.dispatch = (action) => {
-        console.log('current state: ', store.getState());
-        preDispatch(action);
-        console.log('next state', store.getState());
+export const loggerState = (store) => {
+    return (dispatch) => {
+        return (action) => {
+            console.log('current state: ', store.getState());
+            dispatch(action);
+            console.log('next state', store.getState());
+        };
     };
 };
-
-const store = createStore(reducer);
-loggerAction(store);
-loggerState(store);
 ```
 
 [slide]
@@ -421,22 +419,7 @@ loggerState(store);
 
 # <font color=#0099ff>applyMiddleware</font>
 
-- 将每个中间件设计成接受一个dispatch参数，并返回加工过的dispatch作为下一个中间件的参数，以方便链式调用
-
 ``` JavaScript
-// 只打印出 Action
-export const loggerAction = (store) => (dispatch) => (action) => {
-    console.log('action: ', action);
-    dispatch(action);
-};
-
-// 只打印出 更新后的state
-export const loggerState = (store) => (dispatch) => (action) => {
-    console.log('current state: ', store.getState());
-    dispatch(action);
-    console.log('next state', store.getState());
-};
-
 export const applyMiddleware = (store, middlewares) => {
     let dispatch = store.dispatch;
     middlewares.forEach((middleware) => {
@@ -460,19 +443,17 @@ store = applyMiddleware(store, [loggerAction, loggerState]);
 - 官方版的applyMiddleware将第一个参数store也被精简掉了
 
 ``` JavaScript
-export const applyMiddleware = (...middlewares) => {
-    return (createStore) => (reducer, preloadedState, enhancer) => {
-        const store = createStore(reducer, preloadedState, enhancer);
+export const applyMiddlewarePlus = (...middlewares) => (createStore) => (reducer) => {
+    const store = createStore(reducer);
 
-        let dispatch = store.dispatch;
-        middlewares.forEach((middleware) => {
-            dispatch = middleware(store)(dispatch);
-        });
+    let dispatch = store.dispatch;
+    middlewares.forEach((middleware) => {
+        dispatch = middleware(store)(dispatch);
+    });
 
-        return {
-            ...store,
-            dispatch,
-        };
+    return {
+        ...store,
+        dispatch,
     };
 };
 ```

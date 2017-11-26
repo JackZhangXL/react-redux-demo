@@ -8,48 +8,17 @@ export const createReducer = (initialState, handlers) => {
 };
 
 export const combineReducers = (reducers) => {
-    const finalReducerKeys = Object.keys(reducers);
+    const reducerKeys = Object.keys(reducers);
     return (state = {}, action) => {
-        let hasChanged = false;
         const nextState = {};
-        for (let i = 0; i < finalReducerKeys.length; i++) {
-            const key = finalReducerKeys[i];
+        for (let i = 0; i < reducerKeys.length; i++) {
+            const key = reducerKeys[i];
             const reducer = reducers[key];
-            const previousStateForKey = state[key];
-            const nextStateForKey = reducer(previousStateForKey, action);
-            nextState[key] = nextStateForKey;
-            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+            nextState[key] = reducer(state[key], action);
         }
-        return hasChanged ? nextState : state;
-    };
-};
-
-export const middleware1 = (store) => (dispatch) => (action) => {
-    console.log('first middleware');
-    dispatch(action);
-};
-
-export const middleware2 = (store) => (dispatch) => (action) => {
-    console.log('second middleware');
-    dispatch(action);
-};
-
-export const applyMiddleware = (...middlewares) => {
-    return (createStore) => (reducer, initialState, enhancer) => {
-        const store = createStore(reducer, initialState, enhancer);
-        let dispatch = store.dispatch;
-
-        middlewares.forEach((middleware) => {
-            dispatch = middleware(store)(dispatch);
-        });
-
         return {
-            ...store,
-            dispatch,
+            ...state,
+            ...nextState,
         };
     };
-};
-
-export const compose = (...funcs) => {
-    return funcs.reduce((a, b) => (...args) => a(b(...args)));
 };
