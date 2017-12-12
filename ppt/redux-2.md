@@ -319,7 +319,7 @@ export default connect;
 
 - 在流程中插入功能
 
-- 要满足两个特性：一是扩展功能，二是可以被链式组合。
+- 要满足两个特性：一是扩展功能，二是可以被链式调用。
 
 [slide]
 
@@ -501,8 +501,6 @@ export const applyMiddlewarePlus = (...middlewares) => (createStore) => (reducer
 [slide]
 
 # <font color=#0099ff>redux-thunk实现方式</font>
-
-- thunk在JS里是将多参的异步函数，转换成单参
 
 - 常规的Action creator返回一个Action，但redux-thunk，允许你的Action creator还可以返回一个```function(dispatch, getState)```
 

@@ -577,7 +577,7 @@ const mapDispatchToProps2 = (dispatch, ownProps) => {
 
 - 经过conncet的组件的props有3个来源：
 - 1.由mapStateToProps将state映射成的props
-- 2.由mapDispatchToProps将Action creator映射成的props
+- 2.由mapDispatchToProps将```dispatch(action)```映射成的props
 - 3.组件自身的props。
 
 mergeProps的参数分别对应了上面3个来源，作用是整合这些props
@@ -635,7 +635,7 @@ export default connect(
 
 - ```<Provider store>```用于包裹React组件，被包裹的组件可以使用connect方法。
 
-- conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将Action Creator映射成组件props。第三个参数用于整合props。第四个参数可以做一些优化，具体见官网。
+- conncet方法用于将组件绑定Redux。第一个参数负责输入，将state映射成组件props。第二个参数负责输出，将```dispatch(action)```映射成组件props。第三个参数用于整合props。第四个参数可以做一些优化，具体见官网。
 
 [slide]
 
