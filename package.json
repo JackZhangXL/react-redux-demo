@@ -55,6 +55,7 @@
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-logger": "^3.0.1",
+    "redux-saga": "^1.0.2",
     "redux-thunk": "^2.2.0",
     "style-loader": "^0.17.0",
     "url-loader": "^0.5.8",

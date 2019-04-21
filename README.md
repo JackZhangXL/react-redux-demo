@@ -56,6 +56,12 @@ http://0.0.0.0:9999/reactreduxmiddleware.html
 
 ### Chapter 7 reactReduxAsync
 
-learn asynchronous operation
+learn asynchronous operation by redux-thunk
 
 http://0.0.0.0:9999/reactreduxasync.html
+
+### Chapter 8 reactReduxSaga
+
+learn asynchronous operation by redux-saga
+
+http://0.0.0.0:9999/reactreduxsaga.html
