@@ -12,7 +12,7 @@ import Sample from '../containers/sample/sample';
 const logger = createLogger();
 const store = createStore(reducer, compose(
     applyMiddleware(thunk, logger),
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
 ));
 
 render(

@@ -7,7 +7,7 @@ import actions from './actions/index';
 import './originRedux.pcss';
 
 const store = createStore(reducer, compose(
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
 ));
 
 const update = () => {

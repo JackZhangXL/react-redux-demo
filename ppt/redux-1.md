@@ -348,7 +348,7 @@ import { createLogger } from 'redux-logger';
 const logger = createLogger();
 const store = createStore(reducer, compose(
     applyMiddleware(logger),
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
 ));
 ```
 

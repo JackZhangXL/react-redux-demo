@@ -33,7 +33,7 @@ import {
 // Step4 - 增加 compose 绑定插件功能
 const store = createStore(reducer, compose(
     applyMiddlewarePlus(loggerAction, loggerState),
-    window.devToolsExtension ? window.devToolsExtension() : (f) => f,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // eslint-disable-line
 ));
 
 render(
